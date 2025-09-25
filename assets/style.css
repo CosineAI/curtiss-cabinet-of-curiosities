@@ -145,6 +145,10 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
 .cta p {
   margin: 0;
   color: var(--text);
+  display: flex;
+  align-items: center; /* vertically align text and button */
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .cta-link {
@@ -155,9 +159,22 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   font-weight: 700;
   text-decoration: none;
   background: linear-gradient(180deg, rgba(59,130,246,.15), rgba(59,130,246,0));
-  padding: 6px 10px;
+  padding: 6px 12px;
   border-radius: 10px;
   border: 1px solid rgba(59,130,246,.35);
+  transition: transform .24s cubic-bezier(.2,.8,.2,1), box-shadow .24s cubic-bezier(.2,.8,.2,1), background-color .24s cubic-bezier(.2,.8,.2,1), color .24s cubic-bezier(.2,.8,.2,1), border-color .24s cubic-bezier(.2,.8,.2,1);
+}
+
+.cta-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(59,130,246,.25);
+  border-color: rgba(59,130,246,.5);
+  background: linear-gradient(180deg, rgba(59,130,246,.22), rgba(59,130,246,.05));
+}
+
+.cta-link:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59,130,246,.25);
 }
 
 .cta-link:hover {
