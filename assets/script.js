@@ -14,7 +14,6 @@
   function getPreferredTheme() {
     const saved = localStorage.getItem(storageKey);
     if (saved === "light" || saved === "dark") return saved;
-    // Default to dark when no saved preference exists
     return "dark";
   }
 
@@ -50,13 +49,19 @@
     const title = String(site.title || url || "Untitled").trim() || "Untitled";
     const desc = String(site.description || "").trim();
 
-    // Build screenshot URL from INSTANT_SITE_DOMAIN (e.g., "cosine" -> "screenshot.cosine.show")
+    // Allow explicit screenshot override per item
     let imgSrc = null;
-    const domain = (typeof window.INSTANT_SITE_DOMAIN !== "undefined" ? String(window.INSTANT_SITE_DOMAIN) : "").trim().replace(/\/+$/, "");
-    if (domain) {
-      let host = `screenshot.${domain}`;
-      if (!host.endsWith(".show")) host += ".show";
-      imgSrc = `https://${host}/?url=${url}`;
+    const override = (site.screenshotUrl ? String(site.screenshotUrl).trim() : "");
+    if (override) {
+      imgSrc = override;
+    } else {
+      // Build screenshot URL from INSTANT_SITE_DOMAIN (e.g., "cosine" -> "screenshot.cosine.show")
+      const domain = (typeof window.INSTANT_SITE_DOMAIN !== "undefined" ? String(window.INSTANT_SITE_DOMAIN) : "").trim().replace(/\/+$/, "");
+      if (domain) {
+        let host = `screenshot.${domain}`;
+        if (!host.endsWith(".show")) host += ".show";
+        imgSrc = `https://${host}/?url=${url}`;
+      }
     }
 
     const card = document.createElement("article");
