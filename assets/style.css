@@ -48,10 +48,10 @@ html[data-theme="dark"] {
   --glass-button-border: rgba(147,197,253,0.8);
 }
 
-/* Dark mode – keep the Visit button pink and readable */
+/* Dark mode – transparent button with animated border, readable text */
 html[data-theme="dark"] .visit {
-  background: #ffc2ed;
-  color: #3a0c2b;
+  background: transparent;
+  color: var(--text);
   text-shadow: none;
   box-shadow: none;
 }
@@ -260,8 +260,8 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   gap: .5rem;
   text-decoration: none;
   position: relative;
-  background: #ffc2ed; /* flat pink */
-  color: #3a0c2b;      /* deep plum for contrast */
+  background: transparent; /* transparent bg */
+  color: var(--text);       /* theme-aware text color */
   padding: .6rem .95rem;
   border-radius: 12px;
   font-weight: 700;
@@ -269,7 +269,7 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   box-shadow: none;
   margin-top: auto; /* pin to bottom of content */
   overflow: hidden; /* contain animated border */
-  transition: transform .2s ease;
+  transition: transform .2s ease, color .2s ease;
 }
 
 .visit:hover { transform: translateY(-1px); }
