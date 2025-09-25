@@ -112,8 +112,9 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   overflow: hidden;
   box-shadow: var(--shadow);
   transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 1fr; /* image + content */
+  height: 100%;
 }
 
 .card:hover {
@@ -147,12 +148,24 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   padding: 12px 14px 16px;
   display: grid;
   gap: 10px;
+  grid-template-rows: auto auto 1fr auto; /* title, desc, spacer, button */
+  align-content: start;
 }
 
 .card h3 {
   margin: 0;
   font-size: 1rem;
   font-weight: 600;
+}
+
+.desc {
+  color: var(--muted);
+  font-size: .9rem;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* clamp to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .card .meta {
@@ -174,6 +187,7 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   font-weight: 600;
   box-shadow: 0 10px 20px rgba(59,130,246,.25);
   transition: transform .18s ease, box-shadow .18s ease;
+  margin-top: auto; /* pin to bottom of content */
 }
 
 .visit:hover {

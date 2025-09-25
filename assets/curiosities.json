@@ -1,26 +1,32 @@
 [
   {
-    "title": "just-a-day-in-the-forest",
-    "url": "https://just-a-day-in-the-forest.cosine.show/"
+    "title": "Just a Day in the Forest",
+    "url": "https://just-a-day-in-the-forest.cosine.show/",
+    "description": "Just a walk through a 3D forest with zero monsters in sight!"
   },
   {
-    "title": "cosine-music-maker",
-    "url": "https://cosine-music-maker.cosine.show/"
+    "title": "Cosine Music Maker",
+    "url": "https://cosine-music-maker.cosine.show/",
+    "description": "Make beats and drones"
   },
   {
-    "title": "isometric-walker-demo",
-    "url": "https://isometric-walker-demo.cosine.show/"
+    "title": "Isometric Walker Demo",
+    "url": "https://isometric-walker-demo.cosine.show/",
+    "description": "A basic engine with some testing for sprite animations and isometric movements"
   },
   {
-    "title": "reign-of-the-necromancer",
-    "url": "https://reign-of-the-necromancer.cosine.show/"
+    "title": "Reign of the Necromancer",
+    "url": "https://reign-of-the-necromancer.cosine.show/",
+    "description": "A retro turn-based RPG with a secret quest!"
   },
   {
-    "title": "cosine-noise-maker",
-    "url": "https://cosine-noise-maker.cosine.show/"
+    "title": "Cosine Noise Maker",
+    "url": "https://cosine-noise-maker.cosine.show/",
+    "description": "A droning experimental music maker with numerous filters."
   },
   {
-    "title": "14-days-until-christmas-game",
-    "url": "https://14-days-until-christmas-game.cosine.show/"
+    "title": "14 Days Until Christmas Game",
+    "url": "https://14-days-until-christmas-game.cosine.show/",
+    "description": "A dating simulator with music and choices that determine whether you can get a date by Christmas!"
   }
 ]

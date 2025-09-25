@@ -47,6 +47,7 @@
   function createCard(site) {
     const url = String(site.url || "").trim();
     const title = String(site.title || url || "Untitled").trim() || "Untitled";
+    const desc = String(site.description || "").trim();
 
     // Build screenshot URL from INSTANT_SITE_DOMAIN (e.g., "cosine" -> "screenshot.cosine.show")
     let imgSrc = null;
@@ -91,9 +92,9 @@
     const h3 = document.createElement("h3");
     h3.textContent = title;
 
-    const meta = document.createElement("div");
-    meta.className = "meta";
-    meta.textContent = url;
+    const p = document.createElement("p");
+    p.className = "desc";
+    if (desc) p.textContent = desc;
 
     const visit = document.createElement("a");
     visit.className = "visit";
@@ -103,7 +104,7 @@
     visit.textContent = "Visit";
 
     content.appendChild(h3);
-    content.appendChild(meta);
+    if (desc) content.appendChild(p);
     content.appendChild(visit);
 
     card.appendChild(imageLink);
