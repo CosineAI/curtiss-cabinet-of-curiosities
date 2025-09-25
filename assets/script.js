@@ -48,8 +48,16 @@
     const url = String(site.url || "").trim();
     const title = String(site.title || url || "Untitled").trim() || "Untitled";
 
-    const screenshotDomain = (typeof window.INSTANT_SITE_DOMAIN !== "undefined" && window.INSTANT_SITE_DOMAIN) ? String(window.INSTANT_SITE_DOMAIN) : null;
-    const imgSrc = screenshotDomain ? `https://screenshot.${screenshotDomain}?url=${encodeURIComponent(url)}` : null;
+    // Build screenshot host from the site's URL: https://screenshot.{host}?url={url}
+    let imgSrc = null;
+    try {
+      const host = new URL(url).hostname;
+      if (host) {
+        imgSrc = `https://screenshot.${host}?url=${encodeURIComponent(url)}`;
+      }
+    } catch (_) {
+      // ignore
+    }
 
     const card = document.createElement("article");
     card.className = "card";
@@ -66,6 +74,12 @@
       img.alt = `Preview of ${title}`;
       img.loading = "lazy";
       img.decoding = "async";
+      img.onerror = () => {
+        // Replace img with a fallback if screenshot fails
+        const fallback = document.createElement("div");
+        fallback.className = "img-fallback";
+        imageLink.replaceChildren(fallback);
+      };
       imageLink.appendChild(img);
     } else {
       const fallback = document.createElement("div");

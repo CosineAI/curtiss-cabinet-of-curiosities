@@ -1,14 +1,26 @@
 [
   {
-    "title": "OpenAI",
-    "url": "https://openai.com/"
+    "title": "just-a-day-in-the-forest",
+    "url": "https://just-a-day-in-the-forest.cosine.show/"
   },
   {
-    "title": "Cosine",
-    "url": "https://cosine.com/"
+    "title": "cosine-music-maker",
+    "url": "https://cosine-music-maker.cosine.show/"
   },
   {
-    "title": "Wikipedia",
-    "url": "https://wikipedia.org/"
+    "title": "isometric-walker-demo",
+    "url": "https://isometric-walker-demo.cosine.show/"
+  },
+  {
+    "title": "reign-of-the-necromancer",
+    "url": "https://reign-of-the-necromancer.cosine.show/"
+  },
+  {
+    "title": "cosine-noise-maker",
+    "url": "https://cosine-noise-maker.cosine.show/"
+  },
+  {
+    "title": "14-days-until-christmas-game",
+    "url": "https://14-days-until-christmas-game.cosine.show/"
   }
 ]
