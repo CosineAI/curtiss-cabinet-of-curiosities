@@ -251,7 +251,7 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
 
 .card h3 {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 2rem;
   font-weight: 600;
   font-family: "Honk", system-ui, sans-serif;
 }
