@@ -359,6 +359,6 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
 /* Responsive tweaks */
 @media (max-width: 640px) {
   .brand {
-    font-size: 1.25rem;
+    font-size: 4rem;
   }
 }
