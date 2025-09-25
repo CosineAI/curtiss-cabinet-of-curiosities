@@ -95,10 +95,10 @@ body {
 
 .brand {
   margin: 0;
-  font-family: "Lavishly Yours", cursive;
-  font-weight: 400;
+  font-family: "Honk", system-ui, sans-serif;
+  font-weight: 600;
   letter-spacing: .5px;
-  font-size: clamp(2rem, 1.5rem + 3vw, 4rem);
+  font-size: 3rem;
   line-height: 1.15;
 }
 
