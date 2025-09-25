@@ -30,5 +30,23 @@
     "title": "14 Days Until Christmas Game",
     "url": "https://14-days-until-christmas-game.cosine.show/",
     "description": "A dating simulator with music and choices that determine whether you can get a date by Christmas!"
+  },
+  {
+    "title": "Escape Room",
+    "url": "https://oiq7d76uywq5.cosine.show/",
+    "description": "Old school escape room text adventure game",
+    "screenshotUrl": "https://screenshot.cosine.show/?url=https://oiq7d76uywq5.cosine.show"
+  },
+  {
+    "title": "Strange Correlations",
+    "url": "https://2ipvm3r5a620.cosine.show/",
+    "description": "Funny graphs grabbing random public data sets to find correlations",
+    "screenshotUrl": "https://screenshot.cosine.show/?url=https://2ipvm3r5a620.cosine.show"
+  },
+  {
+    "title": "Car ML",
+    "url": "https://77aizdrw75fy.cosine.show/",
+    "description": "Self evolving car algorithm simulation",
+    "screenshotUrl": "https://screenshot.cosine.show/?url=https://77aizdrw75fy.cosine.show"
   }
 ]
