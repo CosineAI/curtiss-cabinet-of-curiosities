@@ -20,6 +20,9 @@
   --glass-border: rgba(230,233,242,0.6);
   --glass-button-bg: rgba(59,130,246,0.22);
   --glass-button-border: rgba(59,130,246,0.5);
+
+  /* Animated border */
+  --shine-angle: 0deg;
 }
 
 html { color-scheme: light dark; }
@@ -259,28 +262,38 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   align-items: center;
   gap: .5rem;
   text-decoration: none;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.25), rgba(255,255,255,0)),
-    var(--glass-button-bg);
-  color: var(--accent-contrast);
+  position: relative;
+  background: #ffc2ed; /* flat pink */
+  color: #3a0c2b;      /* deep plum for contrast */
   padding: .6rem .95rem;
   border-radius: 12px;
   font-weight: 700;
-  border: 1px solid var(--glass-button-border);
-  backdrop-filter: saturate(160%) blur(8px);
-  box-shadow: 0 10px 22px rgba(59,130,246,.28), inset 0 0 0 1px rgba(255,255,255,.18);
-  transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s cubic-bezier(.2,.8,.2,1), background-color .25s cubic-bezier(.2,.8,.2,1), color .25s cubic-bezier(.2,.8,.2,1), border-color .25s cubic-bezier(.2,.8,.2,1), backdrop-filter .25s cubic-bezier(.2,.8,.2,1);
+  border: none;
+  box-shadow: none;
   margin-top: auto; /* pin to bottom of content */
+  overflow: hidden; /* contain animated border */
+  transition: transform .2s ease;
 }
 
-.visit:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 14px 28px rgba(59,130,246,.34), inset 0 0 0 1px rgba(255,255,255,.22);
-}
+.visit:hover { transform: translateY(-1px); }
+.visit:active { transform: translateY(0); }
 
-.visit:active {
-  transform: translateY(0);
-  box-shadow: 0 8px 18px rgba(59,130,246,.28), inset 0 0 0 1px rgba(255,255,255,.2);
+.visit::before {
+  content: "";
+  position: absolute;
+  inset: 0;              /* cover full button */
+  border-radius: inherit;
+  padding: 2px;          /* border thickness */
+  background:
+    conic-gradient(from var(--shine-angle),
+      #ff4aa1, #9a63ff, #4cc9f0, #7cffcb, #ffd166, #ff4aa1);
+  /* Create a border ring by masking the center */
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: spin-shine 6s linear infinite;
 }
 
 .visit:hover {
@@ -312,6 +325,9 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   font-size: .9rem;
 }
 
+@keyframes spin-shine {
+  to { --shine-angle: 360deg; }
+}
 /* Motion preferences */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
