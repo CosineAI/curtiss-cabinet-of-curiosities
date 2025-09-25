@@ -48,15 +48,13 @@
     const url = String(site.url || "").trim();
     const title = String(site.title || url || "Untitled").trim() || "Untitled";
 
-    // Build screenshot host from the site's URL: https://screenshot.{host}?url={url}
+    // Build screenshot URL from INSTANT_SITE_DOMAIN (e.g., "cosine" -> "screenshot.cosine.show")
     let imgSrc = null;
-    try {
-      const host = new URL(url).hostname;
-      if (host) {
-        imgSrc = `https://screenshot.${host}?url=${encodeURIComponent(url)}`;
-      }
-    } catch (_) {
-      // ignore
+    const domain = (typeof window.INSTANT_SITE_DOMAIN !== "undefined" ? String(window.INSTANT_SITE_DOMAIN) : "").trim().replace(/\/+$/, "");
+    if (domain) {
+      let host = `screenshot.${domain}`;
+      if (!host.endsWith(".show")) host += ".show";
+      imgSrc = `https://${host}/?url=${url}`;
     }
 
     const card = document.createElement("article");
