@@ -14,7 +14,8 @@
   function getPreferredTheme() {
     const saved = localStorage.getItem(storageKey);
     if (saved === "light" || saved === "dark") return saved;
-    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    // Default to dark when no saved preference exists
+    return "dark";
   }
 
   function applyTheme(theme) {
