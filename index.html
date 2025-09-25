@@ -1,18 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Static Site</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Curtis's Cabinet of Curiosities</title>
+  <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
-  <main>
-    <h1>Welcome to Your Static Site</h1>
+  <header class="site-header">
+    <div class="wrap">
+      <h1 class="brand">Curtis's Cabinet of Curiosities</h1>
+      <button id="themeToggle" class="theme-toggle" aria-label="Toggle color theme" title="Toggle color theme">
+        <svg data-icon="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+        </svg>
+        <svg data-icon="moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 0111.21 3c-.46 0-.92.03-1.36.1a8 8 0 108.05 10.45c.08-.44.1-.9.1-1.36z"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <div class="wrap">
+      <section id="grid" class="grid" aria-live="polite"></section>
+      <p id="empty" class="empty" hidden>No curiosities yet. Add entries to <code>assets/curiosities.json</code>.</p>
+    </div>
   </main>
-  <footer>
-    <p>&copy; 2025 Your Name</p>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <small>&copy; 2025 Curtis</small>
+    </div>
   </footer>
+
   <script src="assets/script.js"></script>
 </body>
 </html>
