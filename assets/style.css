@@ -78,9 +78,9 @@ body {
 
 /* Header */
 .site-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  position: static; /* let the header scroll with the page */
+  top: auto;
+  z-index: auto;
   background: transparent; /* remove dark backdrop so sunset shows through */
   border-bottom: 0;
   backdrop-filter: none;

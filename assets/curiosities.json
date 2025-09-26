@@ -11,6 +11,7 @@
     "title": "Cosine Music Maker",
     "url": "https://cosine-music-maker.cosine.show/",
     "description": "Make beats and drones",
+    "screenshotUrl": "https://screenshot.cosine.show/?url=https://cosine-music-maker.cosine.show",
     "author": "curtisahuang",
     "tags": ["music"]
   },
@@ -18,6 +19,7 @@
     "title": "Isometric Walker Demo",
     "url": "https://isometric-walker-demo.cosine.show/",
     "description": "A basic engine with some testing for sprite animations and isometric movements",
+    "screenshotUrl": "https://screenshot.cosine.show/?url=https://isometric-walker-demo.cosine.show",
     "author": "curtisahuang",
     "tags": ["games"]
   },
@@ -33,6 +35,7 @@
     "title": "Cosine Noise Maker",
     "url": "https://cosine-noise-maker.cosine.show/",
     "description": "A droning experimental music maker with numerous filters.",
+    "screenshotUrl": "https://screenshot.cosine.show/?url=https://cosine-noise-maker.cosine.show",
     "author": "curtisahuang",
     "tags": ["music"]
   },
@@ -40,6 +43,7 @@
     "title": "14 Days Until Christmas Game",
     "url": "https://14-days-until-christmas-game.cosine.show/",
     "description": "A dating simulator with music and choices that determine whether you can get a date by Christmas!",
+    "screenshotUrl": "https://screenshot.cosine.show/?url=https://14-days-until-christmas-game.cosine.show/",
     "author": "curtisahuang",
     "tags": ["games"]
   },
