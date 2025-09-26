@@ -186,26 +186,24 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   gap: 6px;
   padding: 6px 12px;
   border-radius: 999px;
-  border: 1px solid var(--glass-button-border);
-  background: var(--glass-button-bg);
-  color: var(--accent-contrast);
+  border: 0;
+  background: transparent;
+  color: var(--text);
   font-weight: 700;
   font-size: .85rem;
   cursor: pointer;
   user-select: none;
-  transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, border-color .2s ease, color .2s ease;
+  transition: transform .2s ease, color .2s ease, background-color .2s ease;
 }
 
 .filters .chip:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 20px rgba(59,130,246,.20);
 }
 
 .filters .chip.is-active {
   background: var(--accent);
-  border-color: var(--accent);
+  border: 0;
   color: var(--accent-contrast);
-  box-shadow: 0 8px 18px rgba(59,130,246,.35);
 }
 
 .filters .chip:focus-visible {
