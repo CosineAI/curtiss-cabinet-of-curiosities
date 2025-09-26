@@ -1044,8 +1044,8 @@ html[data-theme="win98"] .site-footer .wrap {
 /* Geocities floating launcher and menu */
 .geo-theme-btn {
   position: fixed;
-  right: 14px;
-  bottom: 14px;
+  left: 14px;
+  top: 12px;
   z-index: 1000;
   padding: 10px 12px;
   border: 3px ridge #ff00ff;
@@ -1058,8 +1058,8 @@ html[data-theme="win98"] .site-footer .wrap {
   cursor: pointer;
 }
 .geocities-menu {
-  right: 14px;
-  bottom: 62px;
+  left: 14px;
+  top: 58px;
   border: 4px groove #00ffff;
   background: #000;
   box-shadow: 0 0 20px #ff00ff;
