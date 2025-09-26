@@ -272,6 +272,35 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   color: var(--muted);
   font-size: .875rem;
   overflow-wrap: anywhere;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card .meta .byline {
+  color: var(--muted);
+  font-size: .85rem;
+}
+
+.card .meta .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.card .meta .tag {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .2px;
+  background: var(--glass-button-bg);
+  border: 1px solid var(--glass-button-border);
+  color: var(--accent-contrast);
+  user-select: none;
 }
 
 .visit {

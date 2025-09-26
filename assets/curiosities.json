@@ -3,50 +3,68 @@
     "title": "Just a Day in the Forest",
     "url": "https://just-a-day-in-the-forest.cosine.show/",
     "description": "Just a walk through a 3D forest with zero monsters in sight!",
-    "screenshotUrl": "https://screenshot.cosine.show/?url=https://just-a-day-in-the-forest.cosine.show"
+    "screenshotUrl": "https://screenshot.cosine.show/?url=https://just-a-day-in-the-forest.cosine.show",
+    "author": "curtisahuang",
+    "tags": ["games"]
   },
   {
     "title": "Cosine Music Maker",
     "url": "https://cosine-music-maker.cosine.show/",
-    "description": "Make beats and drones"
+    "description": "Make beats and drones",
+    "author": "curtisahuang",
+    "tags": ["music"]
   },
   {
     "title": "Isometric Walker Demo",
     "url": "https://isometric-walker-demo.cosine.show/",
-    "description": "A basic engine with some testing for sprite animations and isometric movements"
+    "description": "A basic engine with some testing for sprite animations and isometric movements",
+    "author": "curtisahuang",
+    "tags": ["games"]
   },
   {
     "title": "Reign of the Necromancer",
     "url": "https://reign-of-the-necromancer.cosine.show/",
     "description": "A retro turn-based RPG with a secret quest!",
-    "screenshotUrl": "https://screenshot.cosine.show/?url=https://reign-of-the-necromancer.cosine.show"
+    "screenshotUrl": "https://screenshot.cosine.show/?url=https://reign-of-the-necromancer.cosine.show",
+    "author": "curtisahuang",
+    "tags": ["games"]
   },
   {
     "title": "Cosine Noise Maker",
     "url": "https://cosine-noise-maker.cosine.show/",
-    "description": "A droning experimental music maker with numerous filters."
+    "description": "A droning experimental music maker with numerous filters.",
+    "author": "curtisahuang",
+    "tags": ["music"]
   },
   {
     "title": "14 Days Until Christmas Game",
     "url": "https://14-days-until-christmas-game.cosine.show/",
-    "description": "A dating simulator with music and choices that determine whether you can get a date by Christmas!"
+    "description": "A dating simulator with music and choices that determine whether you can get a date by Christmas!",
+    "author": "curtisahuang",
+    "tags": ["games"]
   },
   {
     "title": "Escape Room",
     "url": "https://oiq7d76uywq5.cosine.show/",
     "description": "Old school escape room text adventure game",
-    "screenshotUrl": "https://screenshot.cosine.show/?url=https://oiq7d76uywq5.cosine.show"
+    "screenshotUrl": "https://screenshot.cosine.show/?url=https://oiq7d76uywq5.cosine.show",
+    "author": "curtisahuang",
+    "tags": ["games"]
   },
   {
     "title": "Strange Correlations",
     "url": "https://2ipvm3r5a620.cosine.show/",
     "description": "Funny graphs grabbing random public data sets to find correlations",
-    "screenshotUrl": "https://screenshot.cosine.show/?url=https://2ipvm3r5a620.cosine.show"
+    "screenshotUrl": "https://screenshot.cosine.show/?url=https://2ipvm3r5a620.cosine.show",
+    "author": "curtisahuang",
+    "tags": ["toys", "data"]
   },
   {
     "title": "Car ML",
     "url": "https://77aizdrw75fy.cosine.show/",
     "description": "Self evolving car algorithm simulation",
-    "screenshotUrl": "https://screenshot.cosine.show/?url=https://77aizdrw75fy.cosine.show"
+    "screenshotUrl": "https://screenshot.cosine.show/?url=https://77aizdrw75fy.cosine.show",
+    "author": "curtisahuang",
+    "tags": ["toys", "machine learning"]
   }
 ]

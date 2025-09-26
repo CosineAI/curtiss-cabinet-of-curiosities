@@ -48,6 +48,8 @@
     const url = String(site.url || "").trim();
     const title = String(site.title || url || "Untitled").trim() || "Untitled";
     const desc = String(site.description || "").trim();
+    const author = String(site.author || "").trim();
+    const tags = Array.isArray(site.tags) ? site.tags.filter(Boolean).map(String) : [];
 
     // Allow explicit screenshot override per item
     let imgSrc = null;
@@ -102,6 +104,29 @@
     p.className = "desc";
     if (desc) p.textContent = desc;
 
+    // Meta: author and tags
+    const meta = document.createElement("div");
+    meta.className = "meta";
+
+    if (author) {
+      const by = document.createElement("span");
+      by.className = "byline";
+      by.textContent = `by ${author}`;
+      meta.appendChild(by);
+    }
+
+    if (tags.length) {
+      const tagsWrap = document.createElement("div");
+      tagsWrap.className = "tags";
+      tags.forEach((t) => {
+        const chip = document.createElement("span");
+        chip.className = "tag";
+        chip.textContent = t;
+        tagsWrap.appendChild(chip);
+      });
+      meta.appendChild(tagsWrap);
+    }
+
     const visit = document.createElement("a");
     visit.className = "visit";
     visit.href = url;
@@ -111,6 +136,7 @@
 
     content.appendChild(h3);
     if (desc) content.appendChild(p);
+    if (author || tags.length) content.appendChild(meta);
     content.appendChild(visit);
 
     card.appendChild(imageLink);
