@@ -410,18 +410,31 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   pointer-events: none; /* purely decorative */
   /* keep it behind header which has z-index:10 by default stacking order */
   z-index: 0;
-  /* space glow + sun halo behind the striped sun */
+  /* sunset sky built from layered gradients */
   background:
-    /* sun halo glow centered on horizon */
+    /* sun halo (pink-dominant) centered on the horizon */
     radial-gradient(40vmin 40vmin at 50% 50vh,
       rgba(255,64,160,.32) 0%,
       rgba(255,64,160,.26) 35%,
       rgba(255,64,160,.12) 62%,
-      rgba(0,0,0,0) 75%),
-    /* subtle bottom glow */
-    radial-gradient(1000px 500px at 50% 100%, rgba(255,64,160,.12), transparent 60%),
-    /* base night sky */
-    linear-gradient(to top, rgba(8,10,18,.96), rgba(20,12,40,.6) 50%, rgba(10,12,20,.4) 100%);
+      rgba(255,64,160,0) 75%),
+    /* warm sunset bloom near the horizon (golden-pink) */
+    radial-gradient(70vmin 40vmin at 50% 56vh,
+      rgba(255,154,98,.24) 0%,
+      rgba(255,154,98,.12) 38%,
+      rgba(255,154,98,0) 70%),
+    /* soft golden band above the horizon */
+    linear-gradient(to top,
+      rgba(255,154,98,.12) 47%,
+      rgba(255,154,98,.06) 55%,
+      rgba(0,0,0,0) 60%),
+    /* base sunset sky: deep indigo to violet */
+    linear-gradient(to top,
+      #061128 0%,
+      #0b1530 25%,
+      #1b1140 45%,
+      #3a1554 70%,
+      #0f0b22 100%);
 }
 
 /* Sunset with scanline stripes */
