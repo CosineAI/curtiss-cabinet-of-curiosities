@@ -16,14 +16,6 @@
     "tags": ["music"]
   },
   {
-    "title": "Isometric Walker Demo",
-    "url": "https://isometric-walker-demo.cosine.show/",
-    "description": "A basic engine with some testing for sprite animations and isometric movements",
-    "screenshotUrl": "https://screenshot.cosine.show/?url=https://isometric-walker-demo.cosine.show",
-    "author": "curtisahuang",
-    "tags": ["games"]
-  },
-  {
     "title": "Reign of the Necromancer",
     "url": "https://reign-of-the-necromancer.cosine.show/",
     "description": "A retro turn-based RPG with a secret quest!",
@@ -39,6 +31,22 @@
     "author": "curtisahuang",
     "tags": ["music"]
   },
+   {
+    "title": "Top Down Tiled Minesweeper",
+    "url": "https://75m525v9vh8c.cosine.page/",
+    "description": "Careful where you step!",
+    "screenshotUrl": "https://screenshot.cosine.show/?url=https://75m525v9vh8c.cosine.page",
+    "author": "deskramer",
+    "tags": ["games"]
+  },
+ {
+    "title": "Janky Physics Sandbox",
+    "url": "https://gvj1as5h9vuz.cosine.show/",
+    "description": "Conjure colorful shapes, fling and pin them with ropes, and tinker with physics on-the-fly",
+    "screenshotUrl": "https://screenshot.cosine.show/?url=https://gvj1as5h9vuz.cosine.show",
+    "author": "deskramer",
+    "tags": ["toys"]
+  },
   {
     "title": "14 Days Until Christmas Game",
     "url": "https://14-days-until-christmas-game.cosine.show/",
@@ -52,6 +60,14 @@
     "url": "https://oiq7d76uywq5.cosine.show/",
     "description": "Old school escape room text adventure game",
     "screenshotUrl": "https://screenshot.cosine.show/?url=https://oiq7d76uywq5.cosine.show",
+    "author": "curtisahuang",
+    "tags": ["games"]
+  },
+    {
+    "title": "Isometric Walker Demo",
+    "url": "https://isometric-walker-demo.cosine.show/",
+    "description": "A basic engine with some testing for sprite animations and isometric movements",
+    "screenshotUrl": "https://screenshot.cosine.show/?url=https://isometric-walker-demo.cosine.show",
     "author": "curtisahuang",
     "tags": ["games"]
   },

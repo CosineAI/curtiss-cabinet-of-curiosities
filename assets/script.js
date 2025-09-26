@@ -1,6 +1,7 @@
 // Curtis's Cabinet of Curiosities
 // - Dark/Light theme toggle
 // - Render curiosities from assets/curiosities.json or window.CURIOSITIES
+// - Tag filter chips
 
 (function () {
   "use strict";
@@ -10,6 +11,10 @@
   const toggleBtn = document.getElementById("themeToggle");
   const grid = document.getElementById("grid");
   const empty = document.getElementById("empty");
+  const filters = document.getElementById("filters");
+
+  let ALL_ITEMS = [];
+  const selectedTags = new Set();
 
   function getPreferredTheme() {
     const saved = localStorage.getItem(storageKey);
@@ -42,6 +47,26 @@
       // ignore
     }
     return Array.isArray(window.CURIOSITIES) ? window.CURIOSITIES : [];
+  }
+
+  function normalizeTag(t) {
+    return String(t || "").trim().toLowerCase();
+  }
+
+  function collectUniqueTags(items) {
+    const map = new Map(); // key(lowercased) -> label(first seen)
+    items.forEach((site) => {
+      const tags = Array.isArray(site.tags) ? site.tags : [];
+      tags.forEach((t) => {
+        const label = String(t || "").trim();
+        if (!label) return;
+        const key = label.toLowerCase();
+        if (!map.has(key)) map.set(key, label);
+      });
+    });
+    return Array.from(map.entries())
+      .map(([key, label]) => ({ key, label }))
+      .sort((a, b) => a.label.localeCompare(b.label));
   }
 
   function createCard(site) {
@@ -104,7 +129,7 @@
     p.className = "desc";
     if (desc) p.textContent = desc;
 
-    // Meta: author and tags
+    // Meta: author and tags in one row
     const meta = document.createElement("div");
     meta.className = "meta";
 
@@ -156,7 +181,109 @@
     grid.appendChild(fragment);
   }
 
+  function renderFilters(tagsList) {
+    if (!filters) return;
+    filters.innerHTML = "";
+    if (!tagsList || tagsList.length === 0) {
+      filters.hidden = true;
+      return;
+    }
+    filters.hidden = false;
+    const wrap = document.createElement("div");
+    wrap.className = "chips";
+    wrap.setAttribute("role", "toolbar");
+    wrap.setAttribute("aria-label", "Tag filters");
+
+    // All chip
+    const allBtn = document.createElement("button");
+    allBtn.type = "button";
+    allBtn.className = "chip";
+    allBtn.dataset.key = "all";
+    allBtn.textContent = "All";
+    allBtn.setAttribute("aria-pressed", "true");
+    allBtn.classList.add("is-active");
+    wrap.appendChild(allBtn);
+
+    tagsList.forEach(({ key, label }) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "chip";
+      btn.dataset.key = key;
+      btn.textContent = label;
+      btn.setAttribute("aria-pressed", "false");
+      wrap.appendChild(btn);
+    });
+
+    // Event delegation for clicks
+    wrap.addEventListener("click", (e) => {
+      const btn = e.target.closest("button.chip");
+      if (!btn) return;
+      const key = btn.dataset.key || "";
+      if (key === "all") {
+        selectedTags.clear();
+      } else {
+        const k = String(key);
+        if (selectedTags.has(k)) selectedTags.delete(k);
+        else selectedTags.add(k);
+      }
+      updateFilterUI();
+      applyFilter();
+    });
+
+    filters.appendChild(wrap);
+  }
+
+  function updateFilterUI() {
+    if (!filters) return;
+    const wrap = filters.querySelector(".chips");
+    if (!wrap) return;
+    const chips = wrap.querySelectorAll("button.chip");
+    const isAll = selectedTags.size === 0;
+    chips.forEach((btn) => {
+      const key = btn.dataset.key || "";
+      const active = key === "all" ? isAll : selectedTags.has(key);
+      btn.classList.toggle("is-active", active);
+      btn.setAttribute("aria-pressed", String(active));
+    });
+  }
+
+  function applyFilter() {
+    if (selectedTags.size === 0) {
+      renderCuriosities(ALL_ITEMS);
+      return;
+    }
+    const filtered = ALL_ITEMS.filter((site) => {
+      const tags = Array.isArray(site.tags) ? site.tags : [];
+      for (const t of tags) {
+        if (selectedTags.has(normalizeTag(t))) return true;
+      }
+      return false;
+    });
+    renderCuriosities(filtered);
+  }
+
+  // Clicking tags inside cards sets the filter to that tag
+  grid.addEventListener("click", (e) => {
+    const chip = e.target.closest(".tag");
+    if (!chip) return;
+    const label = String(chip.textContent || "").trim();
+    if (!label) return;
+    selectedTags.clear();
+    selectedTags.add(normalizeTag(label));
+    updateFilterUI();
+    applyFilter();
+    if (filters) {
+      try { filters.scrollIntoView({ behavior: "smooth", block: "center" }); } catch (_) {}
+    }
+  });
+
   // Initialize
   initTheme();
-  loadCuriosities().then(renderCuriosities);
+  loadCuriosities().then((items) => {
+    ALL_ITEMS = Array.isArray(items) ? items : [];
+    renderCuriosities(ALL_ITEMS);
+    const tagsList = collectUniqueTags(ALL_ITEMS);
+    renderFilters(tagsList);
+    updateFilterUI();
+  });
 })();
