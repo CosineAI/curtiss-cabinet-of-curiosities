@@ -73,7 +73,15 @@ html[data-theme="dark"] .cta .cta-link {
 }
 
 html[data-theme="dark"] .visit:hover {
-  transform: translateY(-1px);
+  transform: none;
+}
+
+/* Disable hover lift for cards and CTA buttons in Synthwave (dark) */
+html[data-theme="dark"] .card:hover {
+  transform: none;
+}
+html[data-theme="dark"] .cta .cta-link:hover {
+  transform: none;
 }
 
 /* Base layout */
