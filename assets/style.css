@@ -80,9 +80,9 @@ body {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: var(--header-bg);
-  border-bottom: 1px solid var(--header-border);
-  backdrop-filter: saturate(180%) blur(8px);
+  background: transparent; /* remove dark backdrop so sunset shows through */
+  border-bottom: 0;
+  backdrop-filter: none;
   transition: background-color .3s ease, border-color .3s ease, backdrop-filter .3s ease;
 }
 
@@ -410,31 +410,42 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   pointer-events: none; /* purely decorative */
   /* keep it behind header which has z-index:10 by default stacking order */
   z-index: 0;
-  /* sunset sky built from layered gradients */
+  /* richly colored sunset sky with vibrant reds, pinks, oranges and purples */
   background:
-    /* sun halo (pink-dominant) centered on the horizon */
+    /* sun halo (pink) centered on the horizon */
     radial-gradient(40vmin 40vmin at 50% 50vh,
-      rgba(255,64,160,.32) 0%,
-      rgba(255,64,160,.26) 35%,
-      rgba(255,64,160,.12) 62%,
+      rgba(255,64,160,.36) 0%,
+      rgba(255,64,160,.28) 35%,
+      rgba(255,64,160,.14) 62%,
       rgba(255,64,160,0) 75%),
-    /* warm sunset bloom near the horizon (golden-pink) */
-    radial-gradient(70vmin 40vmin at 50% 56vh,
-      rgba(255,154,98,.24) 0%,
-      rgba(255,154,98,.12) 38%,
-      rgba(255,154,98,0) 70%),
+    /* sunset flare near the horizon (reds/oranges/pinks) */
+    radial-gradient(80vmin 48vmin at 50% 54vh,
+      rgba(255,59,107,.30) 0%,
+      rgba(255,112,89,.24) 25%,
+      rgba(255,138,61,.18) 45%,
+      rgba(255,64,160,.14) 60%,
+      rgba(255,64,160,0) 80%),
     /* soft golden band above the horizon */
     linear-gradient(to top,
-      rgba(255,154,98,.12) 47%,
-      rgba(255,154,98,.06) 55%,
+      rgba(255,206,130,.22) 47%,
+      rgba(255,174,94,.13) 55%,
       rgba(0,0,0,0) 60%),
-    /* base sunset sky: deep indigo to violet */
+    /* top-sky purple glow */
+    radial-gradient(90vmax 60vmax at 50% -10vmax,
+      rgba(168,85,247,.25) 0%,
+      rgba(168,85,247,0) 60%),
+    /* base multicolor sunset sky */
     linear-gradient(to top,
-      #061128 0%,
-      #0b1530 25%,
-      #1b1140 45%,
-      #3a1554 70%,
-      #0f0b22 100%);
+      #0a0d1a 0%,
+      #0a0d1a 46%,
+      #3c0a2e 49%,
+      #ff3b6b 52%,
+      #ff6f59 58%,
+      #ff8a3d 64%,
+      #ffd166 70%,
+      #ff6fd8 78%,
+      #b05cff 88%,
+      #3a1554 100%);
 }
 
 /* Sunset with scanline stripes */
