@@ -161,18 +161,15 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   backdrop-filter: saturate(160%) blur(12px);
 }
 
-/* Tag filters (glass card) */
+/* Tag filters - naked chips, no container */
 .filters {
   margin: 8px 0 20px;
-  padding: 10px 12px;
-  border: 1px solid var(--glass-border);
-  border-radius: 16px;
-  background:
-    radial-gradient(250px 120px at 15% 15%, rgba(255,255,255,.10), transparent 60%),
-    radial-gradient(250px 120px at 85% 10%, rgba(255,255,255,.05), transparent 60%),
-    var(--glass);
-  box-shadow: var(--shadow);
-  backdrop-filter: saturate(160%) blur(12px);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
 }
 
 .filters .chips {
