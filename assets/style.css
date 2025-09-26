@@ -131,7 +131,7 @@ body {
   will-change: transform, box-shadow;
 }
 
-.theme-toggle:hover { transform: translateY(-1px); }
+.theme-toggle:hover { transform: none; }
 .theme-toggle svg { width: 20px; height: 20px; display: block; }
 
 html[data-theme="dark"] .theme-toggle [data-icon="sun"] { display: none; }
