@@ -4,14 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="light dark" />
-  <title>Curtis's Cabinet of Curiosities</title>
+  <title>Cosine's Curious Compendium</title>
   <link href="https://fonts.googleapis.com/css2?family=Lavishly+Yours&family=Honk&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
+  <div class="bg-synthwave" aria-hidden="true"></div>
   <header class="site-header">
     <div class="wrap">
-      <h1 class="brand">Curtis's Cabinet of Curiosities</h1>
+      <h1 class="brand">Cosine's Curious Compendium</h1>
       <button id="themeToggle" class="theme-toggle" aria-label="Toggle color theme" title="Toggle color theme">
         <svg data-icon="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
           <circle cx="12" cy="12" r="4"></circle>
@@ -28,6 +29,10 @@
     <div class="wrap">
       <section class="cta" aria-label="Cosine call-to-action">
         <p>All of these were built with Cosine. <a class="cta-link" href="https://cosine.sh" target="_blank" rel="noopener noreferrer">Sign up today</a></p>
+      </section>
+
+      <section id="filters" class="filters" hidden aria-label="Filter by tags">
+        <div class="chips" role="toolbar" aria-label="Tag filters"></div>
       </section>
 
       <section id="grid" class="grid" aria-live="polite"></section>

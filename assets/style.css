@@ -21,8 +21,18 @@
   --glass-button-bg: rgba(59,130,246,0.22);
   --glass-button-border: rgba(59,130,246,0.5);
 
+  /* Chip tokens */
+  --chip-bg: rgba(255,255,255,0.9);
+  --chip-border: rgba(0,0,0,0.12);
+  --chip-text: var(--text);
+
   /* Animated border */
   --shine-angle: 0deg;
+
+  /* Card row heights (fixed for consistent layout) */
+  --row-title: 28px;   /* 1-line title */
+  --row-author: 28px;  /* 1-line author row */
+  --row-tags: 28px;    /* 1-line tags row */
 }
 
 html { color-scheme: light dark; }
@@ -46,10 +56,16 @@ html[data-theme="dark"] {
   /* Slightly brighter translucent button background in dark mode */
   --glass-button-bg: rgba(96,165,250,0.3);
   --glass-button-border: rgba(147,197,253,0.8);
+
+  /* Chip tokens (dark) */
+  --chip-bg: rgba(18,25,34,0.85);
+  --chip-border: rgba(255,255,255,0.12);
+  --chip-text: var(--accent-contrast);
 }
 
 /* Dark mode – transparent button with animated border, readable text */
-html[data-theme="dark"] .visit {
+html[data-theme="dark"] .visit,
+html[data-theme="dark"] .cta .cta-link {
   background: transparent;
   color: var(--text);
   text-shadow: none;
@@ -77,12 +93,12 @@ body {
 
 /* Header */
 .site-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: var(--header-bg);
-  border-bottom: 1px solid var(--header-border);
-  backdrop-filter: saturate(180%) blur(8px);
+  position: static; /* let the header scroll with the page */
+  top: auto;
+  z-index: auto;
+  background: transparent; /* remove dark backdrop so sunset shows through */
+  border-bottom: 0;
+  backdrop-filter: none;
   transition: background-color .3s ease, border-color .3s ease, backdrop-filter .3s ease;
 }
 
@@ -90,7 +106,8 @@ body {
   min-height: 64px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  position: relative;
 }
 
 .brand {
@@ -100,6 +117,16 @@ body {
   letter-spacing: .5px;
   font-size: 4rem;
   line-height: 1.15;
+  text-align: center;
+  width: 100%;
+}
+
+/* Keep the toggle at the right while title remains centered */
+.site-header .theme-toggle {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /* Theme toggle */
@@ -119,7 +146,7 @@ body {
   will-change: transform, box-shadow;
 }
 
-.theme-toggle:hover { transform: translateY(-1px); }
+.theme-toggle:hover { transform: none; }
 .theme-toggle svg { width: 20px; height: 20px; display: block; }
 
 html[data-theme="dark"] .theme-toggle [data-icon="sun"] { display: none; }
@@ -134,13 +161,67 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
 .cta {
   margin: 8px 0 20px;
   padding: 14px 16px;
-  border: 1px solid var(--card-border);
-  border-radius: 14px;
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
   background:
-    radial-gradient(250px 120px at 10% 10%, rgba(96,165,250,.15), transparent 60%),
-    radial-gradient(250px 120px at 90% 20%, rgba(99,102,241,.15), transparent 60%),
-    var(--card);
+    radial-gradient(250px 120px at 10% 10%, rgba(96,165,250,.12), transparent 60%),
+    radial-gradient(250px 120px at 90% 20%, rgba(99,102,241,.12), transparent 60%),
+    var(--glass);
   box-shadow: var(--shadow);
+  backdrop-filter: saturate(160%) blur(12px);
+}
+
+/* Tag filters - naked chips, no container */
+.filters {
+  margin: 8px 0 20px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.filters .chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.filters .chip {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--chip-border);
+  background: var(--chip-bg);
+  color: var(--chip-text);
+  font-weight: 700;
+  font-size: .9rem;
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+  box-shadow:
+    0 2px 10px rgba(16,19,31,0.18),
+    0 0 0 1px rgba(255,255,255,0.06) inset;
+  backdrop-filter: saturate(140%) blur(6px);
+  text-shadow: 0 1px 1px rgba(0,0,0,0.25);
+  transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, border-color .2s ease, color .2s ease;
+}
+
+.filters .chip.is-active {
+  background: var(--accent);
+  border: 0;
+  color: var(--accent-contrast);
+}
+
+.filters .chip:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59,130,246,.25);
 }
 
 .cta p {
@@ -245,16 +326,20 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   padding: 12px 14px 16px;
   display: grid;
   gap: 10px;
-  grid-template-rows: auto auto 1fr auto; /* title, desc, spacer, button */
+  /* rows: title (fixed), description (2 lines fixed via height), author (fixed), tags (fixed), button */
+  grid-template-rows: var(--row-title) auto var(--row-author) var(--row-tags) auto;
   align-content: start;
 }
 
 .card h3 {
   margin: 0;
   font-size: 2rem;
-  line-height: 28px;
+  line-height: 28px; /* 1 line tall to match --row-title */
   font-weight: 600;
   font-family: "Honk", system-ui, sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .desc {
@@ -266,15 +351,58 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   -webkit-line-clamp: 2; /* clamp to 2 lines */
   -webkit-box-orient: vertical;
   overflow: hidden;
+  height: calc(2 * 1.4em); /* exactly two lines tall */
 }
 
 .card .meta {
   color: var(--muted);
   font-size: .875rem;
-  overflow-wrap: anywhere;
+  display: flex;
+  flex-direction: row;   /* byline on its own row */
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  min-height: var(--row-author);
 }
 
-.visit {
+.card .meta .byline {
+  color: var(--muted);
+  font-size: .85rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card .tags {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: nowrap;     /* one row */
+  gap: 6px;
+  overflow: hidden;      /* hide overflowed chips */
+  white-space: nowrap;
+  min-height: var(--row-tags);
+}
+
+.card .tag {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .2px;
+  background: var(--glass-button-bg);
+  border: 1px solid var(--glass-button-border);
+  color: var(--accent-contrast);
+  user-select: none;
+  white-space: nowrap;   /* keep chip text on one line */
+  flex: 0 0 auto;        /* prevent chips from shrinking */
+}
+
+.visit,
+.cta .cta-link {
   justify-self: start;
   display: inline-flex;
   align-items: center;
@@ -294,10 +422,15 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   transition: transform .2s ease, color .2s ease;
 }
 
-.visit:hover { transform: translateY(-1px); }
-.visit:active { transform: translateY(0); }
+.visit:hover,
+.cta .cta-link:hover { transform: translateY(-1px); }
+.visit:active,
+.cta .cta-link:active { transform: translateY(0); }
 
-.visit::before {
+.card .visit { padding-left: 1.2rem; padding-right: 1.2rem; }
+
+.visit::before,
+.cta .cta-link::before {
   content: "";
   position: absolute;
   inset: 0;              /* cover full button */
@@ -315,7 +448,8 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   animation: spin-shine 6s linear infinite;
 }
 
-.visit:hover {
+.visit:hover,
+.cta .cta-link:hover {
   transform: translateY(-1px);
   box-shadow: 0 12px 24px rgba(59,130,246,.3);
 }
@@ -361,4 +495,111 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   .brand {
     font-size: 4rem;
   }
+}
+
+/* Synthwave background (fixed): horizon grid + sunset */
+.bg-synthwave {
+  position: fixed;
+  inset: 0;
+  pointer-events: none; /* purely decorative */
+  /* keep it behind header which has z-index:10 by default stacking order */
+  z-index: 0;
+  /* sunset sky with darker blues/purples in the upper half */
+  background:
+    /* sun halo (pink) centered on the horizon */
+    radial-gradient(40vmin 40vmin at 50% 50vh,
+      rgba(255,64,160,.36) 0%,
+      rgba(255,64,160,.28) 35%,
+      rgba(255,64,160,.14) 62%,
+      rgba(255,64,160,0) 75%),
+    /* sunset flare near the horizon (reds/oranges/pinks) */
+    radial-gradient(80vmin 48vmin at 50% 54vh,
+      rgba(255,59,107,.30) 0%,
+      rgba(255,112,89,.24) 25%,
+      rgba(255,138,61,.18) 45%,
+      rgba(255,64,160,.14) 60%,
+      rgba(255,64,160,0) 80%),
+    /* soft golden band above the horizon */
+    linear-gradient(to top,
+      rgba(255,206,130,.22) 47%,
+      rgba(255,174,94,.13) 55%,
+      rgba(0,0,0,0) 60%),
+    /* top-sky deep indigo glow */
+    radial-gradient(90vmax 60vmax at 50% -10vmax,
+      rgba(28,33,74,.20) 0%,
+      rgba(28,33,74,0) 60%),
+    /* base sunset sky with darker upper half */
+    linear-gradient(to top,
+      /* lower half near horizon (warm band kept tight) */
+      #0a0d1a 0%,
+      #0a0d1a 44%,
+      #2b0f2e 48%,
+      #ff3b6b 50%,
+      #ff6f59 54%,
+      #ff8a3d 58%,
+      #d74c9f 62%,
+      /* upper half transitions to darker purples/blues */
+      #3a1a6e 70%,
+      #1a1440 82%,
+      #0e1226 100%);
+}
+
+/* Sunset with scanline stripes */
+.bg-synthwave::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: calc(50vh - 19vmin); /* center the sun on the horizon so half is covered by grid */
+  width: 38vmin;
+  height: 38vmin;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 60%,
+      #ffd166 0%,
+      #ff9a62 35%,
+      #ff4aa1 62%,
+      rgba(255,74,161,0) 66%);
+  /* striped mask */
+  -webkit-mask: repeating-linear-gradient(to bottom, rgba(0,0,0,1) 0 8px, rgba(0,0,0,0) 8px 14px);
+  mask: repeating-linear-gradient(to bottom, rgba(0,0,0,1) 0 8px, rgba(0,0,0,0) 8px 14px);
+  /* amplified glow around the sun (more pink) */
+  filter:
+    drop-shadow(0 0 34px rgba(255,74,161,.75))
+    drop-shadow(0 0 70px rgba(255,74,161,.45))
+    drop-shadow(0 0 110px rgba(255,74,161,.30));
+  box-shadow:
+    0 0 90px 20px rgba(255,74,161,.24),
+    0 0 110px 30px rgba(255,74,161,.18) inset;
+  opacity: .97;
+  z-index: 1; /* place sun behind the grid */
+}
+
+/* Purple grid horizon */
+.bg-synthwave::after {
+  content: "";
+  position: absolute;
+  left: -20vw;
+  right: -20vw;
+  top: 50vh;      /* flat horizon at mid-screen */
+  bottom: -35vh;  /* extend beyond bottom to keep base filled */
+  transform-origin: top center; /* vanishing point aligned to sun (center) */
+  /* strong perspective tilt to foreshorten horizontals while keeping horizon flat */
+  transform: perspective(650px) rotateX(70deg);
+  /* draw: atmosphere fade, converging verticals (conic), horizontal lines, dark blue base */
+  background:
+    /* atmospheric fade rising from the horizon */
+    linear-gradient(to top, rgba(20,0,40,.92), rgba(20,0,40,0) 60%),
+    /* converging vertical grid lines toward the sun (vanishing point at 50% 0%) */
+    repeating-conic-gradient(from -90deg at 50% 0%,
+      rgba(168,85,247,.65) 0 0.7deg,
+      transparent 0.7deg 12deg),
+    /* horizontal grid lines (foreshortened by 3D transform) */
+    repeating-linear-gradient(to top, rgba(168,85,247,.55) 0 2px, transparent 2px 60px),
+    /* base plane fill to make squares dark blue */
+    linear-gradient(#061128, #061128);
+  box-shadow:
+    0 -10px 40px rgba(168,85,247,.28) inset,
+    0 0 60px rgba(99,102,241,.18) inset;
+  z-index: 2; /* ensure grid overlays the lower half of the sun */
 }
