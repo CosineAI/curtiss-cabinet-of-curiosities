@@ -311,6 +311,7 @@ html[data-theme="win98"] .card {
 }
 
 html[data-theme="win98"] .card:hover { transform: none; }
+html[data-theme="win98"] .card:hover img { transform: none; }
 
 html[data-theme="win98"] .card img {
   background: #808080;
