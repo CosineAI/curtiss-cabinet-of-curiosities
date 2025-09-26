@@ -125,14 +125,14 @@
     const h3 = document.createElement("h3");
     h3.textContent = title;
 
+    // Description: always include, height fixed to two lines via CSS
     const p = document.createElement("p");
     p.className = "desc";
     if (desc) p.textContent = desc;
 
-    // Meta: author and tags in one row
+    // Meta rows: author then tags
     const meta = document.createElement("div");
     meta.className = "meta";
-
     if (author) {
       const by = document.createElement("span");
       by.className = "byline";
@@ -140,16 +140,15 @@
       meta.appendChild(by);
     }
 
+    const tagsWrap = document.createElement("div");
+    tagsWrap.className = "tags";
     if (tags.length) {
-      const tagsWrap = document.createElement("div");
-      tagsWrap.className = "tags";
       tags.forEach((t) => {
         const chip = document.createElement("span");
         chip.className = "tag";
         chip.textContent = t;
         tagsWrap.appendChild(chip);
       });
-      meta.appendChild(tagsWrap);
     }
 
     const visit = document.createElement("a");
@@ -157,11 +156,13 @@
     visit.href = url;
     visit.target = "_blank";
     visit.rel = "noopener noreferrer";
-    visit.textContent = "Visit";
+    visit.textContent = "Visit Site";
 
+    // Assemble in fixed row order
     content.appendChild(h3);
-    if (desc) content.appendChild(p);
-    if (author || tags.length) content.appendChild(meta);
+    content.appendChild(p);
+    content.appendChild(meta);
+    content.appendChild(tagsWrap);
     content.appendChild(visit);
 
     card.appendChild(imageLink);

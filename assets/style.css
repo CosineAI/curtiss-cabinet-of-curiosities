@@ -30,9 +30,9 @@
   --shine-angle: 0deg;
 
   /* Card row heights (fixed for consistent layout) */
-  --row-title: 28px;  /* 1-line title row */
-  --row-desc: 44px;   /* 2-line description row */
-  --row-meta: 28px;   /* 1-line meta (author + tags) row */
+  --row-title: 28px;   /* 1-line title */
+  --row-author: 28px;  /* 1-line author row */
+  --row-tags: 28px;    /* 1-line tags row */
 }
 
 html { color-scheme: light dark; }
@@ -326,8 +326,8 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   padding: 12px 14px 16px;
   display: grid;
   gap: 10px;
-  /* fixed-height rows: title, description, meta; then button */
-  grid-template-rows: var(--row-title) var(--row-desc) var(--row-meta) auto;
+  /* rows: title (fixed), description (2 lines fixed via height), author (fixed), tags (fixed), button */
+  grid-template-rows: var(--row-title) auto var(--row-author) var(--row-tags) auto;
   align-content: start;
 }
 
@@ -351,18 +351,19 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   -webkit-line-clamp: 2; /* clamp to 2 lines */
   -webkit-box-orient: vertical;
   overflow: hidden;
+  height: calc(2 * 1.4em); /* exactly two lines tall */
 }
 
 .card .meta {
   color: var(--muted);
   font-size: .875rem;
   display: flex;
-  flex-direction: row;   /* author + tags on same row */
+  flex-direction: row;   /* byline on its own row */
   align-items: center;
   gap: 8px;
   white-space: nowrap;
-  overflow: hidden;      /* trim overflow if too many tags */
-  min-height: var(--row-meta);
+  overflow: hidden;
+  min-height: var(--row-author);
 }
 
 .card .meta .byline {
@@ -371,18 +372,19 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  flex: 0 1 40%;
 }
 
-.card .meta .tags {
+.card .tags {
   display: inline-flex;
-  flex-wrap: nowrap;    /* keep tags in one row */
+  align-items: center;
+  flex-wrap: nowrap;     /* one row */
   gap: 6px;
-  overflow: hidden;     /* hide overflowed chips */
-  flex: 1 1 auto;       /* take remaining space next to byline */
+  overflow: hidden;      /* hide overflowed chips */
+  white-space: nowrap;
+  min-height: var(--row-tags);
 }
 
-.card .meta .tag {
+.card .tag {
   display: inline-flex;
   align-items: center;
   line-height: 1;
@@ -395,8 +397,8 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   border: 1px solid var(--glass-button-border);
   color: var(--accent-contrast);
   user-select: none;
-  white-space: nowrap;  /* keep chip text on one line */
-  flex: 0 0 auto;       /* prevent chips from shrinking */
+  white-space: nowrap;   /* keep chip text on one line */
+  flex: 0 0 auto;        /* prevent chips from shrinking */
 }
 
 .visit,
@@ -424,6 +426,8 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
 .cta .cta-link:hover { transform: translateY(-1px); }
 .visit:active,
 .cta .cta-link:active { transform: translateY(0); }
+
+.card .visit { padding-left: 1.2rem; padding-right: 1.2rem; }
 
 .visit::before,
 .cta .cta-link::before {
