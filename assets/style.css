@@ -49,7 +49,8 @@ html[data-theme="dark"] {
 }
 
 /* Dark mode – transparent button with animated border, readable text */
-html[data-theme="dark"] .visit {
+html[data-theme="dark"] .visit,
+html[data-theme="dark"] .cta .cta-link {
   background: transparent;
   color: var(--text);
   text-shadow: none;
@@ -145,13 +146,14 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
 .cta {
   margin: 8px 0 20px;
   padding: 14px 16px;
-  border: 1px solid var(--card-border);
-  border-radius: 14px;
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
   background:
-    radial-gradient(250px 120px at 10% 10%, rgba(96,165,250,.15), transparent 60%),
-    radial-gradient(250px 120px at 90% 20%, rgba(99,102,241,.15), transparent 60%),
-    var(--card);
+    radial-gradient(250px 120px at 10% 10%, rgba(96,165,250,.12), transparent 60%),
+    radial-gradient(250px 120px at 90% 20%, rgba(99,102,241,.12), transparent 60%),
+    var(--glass);
   box-shadow: var(--shadow);
+  backdrop-filter: saturate(160%) blur(12px);
 }
 
 .cta p {
@@ -314,7 +316,8 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   user-select: none;
 }
 
-.visit {
+.visit,
+.cta .cta-link {
   justify-self: start;
   display: inline-flex;
   align-items: center;
@@ -334,10 +337,13 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   transition: transform .2s ease, color .2s ease;
 }
 
-.visit:hover { transform: translateY(-1px); }
-.visit:active { transform: translateY(0); }
+.visit:hover,
+.cta .cta-link:hover { transform: translateY(-1px); }
+.visit:active,
+.cta .cta-link:active { transform: translateY(0); }
 
-.visit::before {
+.visit::before,
+.cta .cta-link::before {
   content: "";
   position: absolute;
   inset: 0;              /* cover full button */
@@ -355,7 +361,8 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   animation: spin-shine 6s linear infinite;
 }
 
-.visit:hover {
+.visit:hover,
+.cta .cta-link:hover {
   transform: translateY(-1px);
   box-shadow: 0 12px 24px rgba(59,130,246,.3);
 }
