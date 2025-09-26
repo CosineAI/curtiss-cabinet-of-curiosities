@@ -8,7 +8,9 @@
 
   const storageKey = "theme-preference";
   const root = document.documentElement;
-  const toggleBtn = document.getElementById("themeToggle");
+  const darkBtn = document.getElementById("themeDarkBtn");
+  const winBtn = document.getElementById("themeWinBtn");
+  const geoBtn = document.getElementById("themeGeoBtn");
   const grid = document.getElementById("grid");
   const empty = document.getElementById("empty");
   const filters = document.getElementById("filters");
@@ -29,15 +31,24 @@
   function initTheme() {
     // Apply saved or default theme
     applyTheme(getPreferredTheme());
-    // Toggle between dark, Windows 98, and Geocities
-    if (toggleBtn) {
-      toggleBtn.addEventListener("click", () => {
-        const current = root.getAttribute("data-theme") || "dark";
-        const order = ["dark", "win98", "geocities"];
-        const idx = order.indexOf(current);
-        const next = order[(idx + 1) % order.length] || "dark";
-        applyTheme(next);
-        try { localStorage.setItem(storageKey, next); } catch (_) {}
+
+    // Individual theme buttons
+    if (darkBtn) {
+      darkBtn.addEventListener("click", () => {
+        applyTheme("dark");
+        try { localStorage.setItem(storageKey, "dark"); } catch (_) {}
+      });
+    }
+    if (winBtn) {
+      winBtn.addEventListener("click", () => {
+        applyTheme("win98");
+        try { localStorage.setItem(storageKey, "win98"); } catch (_) {}
+      });
+    }
+    if (geoBtn) {
+      geoBtn.addEventListener("click", () => {
+        applyTheme("geocities");
+        try { localStorage.setItem(storageKey, "geocities"); } catch (_) {}
       });
     }
   }

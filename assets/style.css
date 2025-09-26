@@ -121,41 +121,61 @@ body {
   width: 100%;
 }
 
-/* Toggle placement (top-right) */
-.site-header .theme-toggle {
+/* Theme buttons container (top-right) */
+.site-header .theme-buttons {
   position: absolute;
   right: 16px;
   top: 50%;
   transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
-/* Windows 98-style toggle button */
-.theme-toggle.win98-toggle {
+/* Base theme button */
+.theme-toggle {
   appearance: none;
-  border: 1px solid #000;
-  background: #c0c0c0;
-  color: #000;
+  border: 1px solid var(--card-border);
+  background: var(--card);
+  color: var(--text);
   padding: 6px 8px;
-  border-radius: 2px;
+  border-radius: 8px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow:
-    inset 1px 1px 0 #fff,
-    inset -1px -1px 0 #7f7f7f,
-    1px 1px 0 #000;
+  box-shadow: var(--shadow);
   cursor: pointer;
 }
-
-.theme-toggle.win98-toggle:hover {
-  filter: brightness(0.98);
-}
-
+.theme-toggle .icon,
 .win-logo {
   width: 20px;
   height: 20px;
   display: block;
 }
+
+/* Windows 98-style button */
+.theme-toggle.win98-toggle {
+  border: 1px solid #000;
+  background: #c0c0c0;
+  color: #000;
+  border-radius: 2px;
+  box-shadow:
+    inset 1px 1px 0 #fff,
+    inset -1px -1px 0 #7f7f7f,
+    1px 1px 0 #000;
+}
+
+.theme-toggle.win98-toggle:hover { filter: brightness(0.98); }
+
+/* Geocities badge button */
+.theme-toggle.geo-toggle {
+  border: 2px ridge #ff00ff;
+  background: linear-gradient(180deg, #ffff00, #ffcc00);
+  color: #000;
+  border-radius: 6px;
+  box-shadow: 0 0 10px #ff00ff;
+}
+.theme-toggle.geo-toggle .icon { filter: saturate(1.6) contrast(1.3); }
 
 /* Windows 98 Theme */
 html[data-theme="win98"] {

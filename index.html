@@ -13,15 +13,29 @@
   <header class="site-header">
     <div class="wrap">
       <h1 class="brand">Cosine's Curious Compendium</h1>
-      <button id="themeToggle" class="theme-toggle win98-toggle" aria-label="Toggle Windows 98 theme" title="Toggle Windows 98 theme">
-        <!-- Simple Windows logo: four colored panes -->
-        <svg viewBox="0 0 24 24" aria-hidden="true" class="win-logo">
-          <rect x="2" y="3" width="9" height="8" fill="#F25022"></rect>
-          <rect x="13" y="3" width="9" height="8" fill="#7FBA00"></rect>
-          <rect x="2" y="13" width="9" height="8" fill="#00A4EF"></rect>
-          <rect x="13" y="13" width="9" height="8" fill="#FFB900"></rect>
-        </svg>
-      </button>
+      <div class="theme-buttons" role="group" aria-label="Theme selectors">
+        <button id="themeDarkBtn" class="theme-toggle dark-toggle" aria-label="Switch to Dark theme" title="Dark theme">
+          <!-- Moon icon -->
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+            <path fill="currentColor" d="M21 12.79A9 9 0 0111.21 3c-.46 0-.92.03-1.36.1a8 8 0 108.05 10.45c.08-.44.1-.9.1-1.36z"></path>
+          </svg>
+        </button>
+        <button id="themeWinBtn" class="theme-toggle win98-toggle" aria-label="Switch to Windows 98 theme" title="Windows 98 theme">
+          <!-- Simple Windows logo: four colored panes -->
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="win-logo">
+            <rect x="2" y="3" width="9" height="8" fill="#F25022"></rect>
+            <rect x="13" y="3" width="9" height="8" fill="#7FBA00"></rect>
+            <rect x="2" y="13" width="9" height="8" fill="#00A4EF"></rect>
+            <rect x="13" y="13" width="9" height="8" fill="#FFB900"></rect>
+          </svg>
+        </button>
+        <button id="themeGeoBtn" class="theme-toggle geo-toggle" aria-label="Switch to Geocities theme" title="Geocities theme">
+          <!-- Starburst badge -->
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+            <path fill="currentColor" d="M12 2l2.2 4.8 5.3.6-3.9 3.6 1.1 5.2L12 14.7 7.3 16.2l1.1-5.2-3.9-3.6 5.3-.6L12 2z"></path>
+          </svg>
+        </button>
+      </div>
     </div>
   </header>
 
