@@ -6,7 +6,9 @@
 (function () {
   "use strict";
 
+  const storageKey = "theme-preference";
   const root = document.documentElement;
+  const toggleBtn = document.getElementById("themeToggle");
   const grid = document.getElementById("grid");
   const empty = document.getElementById("empty");
   const filters = document.getElementById("filters");
@@ -16,7 +18,7 @@
 
   function getPreferredTheme() {
     const saved = localStorage.getItem(storageKey);
-    if (saved === "light" || saved === "dark") return saved;
+    if (saved === "win98" || saved === "dark") return saved;
     return "dark";
   }
 
@@ -25,8 +27,17 @@
   }
 
   function initTheme() {
-    // Force dark mode and remove toggle functionality
-    root.setAttribute("data-theme", "dark");
+    // Apply saved or default theme
+    applyTheme(getPreferredTheme());
+    // Toggle between dark and Windows 98
+    if (toggleBtn) {
+      toggleBtn.addEventListener("click", () => {
+        const current = root.getAttribute("data-theme") || "dark";
+        const next = current === "win98" ? "dark" : "win98";
+        applyTheme(next);
+        try { localStorage.setItem(storageKey, next); } catch (_) {}
+      });
+    }
   }
 
   async function loadCuriosities() {

@@ -121,6 +121,242 @@ body {
   width: 100%;
 }
 
+/* Toggle placement (top-right) */
+.site-header .theme-toggle {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Windows 98-style toggle button */
+.theme-toggle.win98-toggle {
+  appearance: none;
+  border: 1px solid #000;
+  background: #c0c0c0;
+  color: #000;
+  padding: 6px 8px;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    inset 1px 1px 0 #fff,
+    inset -1px -1px 0 #7f7f7f,
+    1px 1px 0 #000;
+  cursor: pointer;
+}
+
+.theme-toggle.win98-toggle:hover {
+  filter: brightness(0.98);
+}
+
+.win-logo {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+/* Windows 98 Theme */
+html[data-theme="win98"] {
+  --bg: #008080;            /* classic teal desktop */
+  --text: #000000;
+  --muted: #000000;
+  --card: #c0c0c0;          /* dialog grey */
+  --card-border: #000000;
+  --header-bg: #000080;     /* title bar blue */
+  --header-border: #000000;
+  --accent: #000080;
+  --accent-contrast: #ffffff;
+  --shadow: none;
+
+  --glass: #c0c0c0;
+  --glass-border: #000000;
+  --glass-button-bg: #c0c0c0;
+  --glass-button-border: #000000;
+
+  --chip-bg: #c0c0c0;
+  --chip-border: #000000;
+  --chip-text: #000000;
+}
+
+/* Hide synthwave background in Win98 mode */
+html[data-theme="win98"] .bg-synthwave { display: none; }
+
+/* Header becomes a title bar */
+html[data-theme="win98"] .site-header {
+  position: static;
+  background: var(--header-bg);
+  border-bottom: 2px solid #000;
+}
+
+html[data-theme="win98"] .site-header .wrap {
+  min-height: 44px;
+}
+
+html[data-theme="win98"] .brand {
+  font-family: Tahoma, "MS Sans Serif", "Segoe UI", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 44px;
+  color: #fff;
+  text-shadow: 1px 1px 0 #000;
+}
+
+/* Base layout overrides */
+html[data-theme="win98"] body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Tahoma, "MS Sans Serif", "Segoe UI", system-ui, sans-serif;
+}
+
+/* CTA turns into a flat panel */
+html[data-theme="win98"] .cta {
+  margin: 8px 0 16px;
+  padding: 10px 12px;
+  border: 2px solid #000;
+  border-radius: 2px;
+  background: #c0c0c0;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+html[data-theme="win98"] .cta-link {
+  background: #c0c0c0;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 2px;
+  box-shadow:
+    inset 1px 1px 0 #fff,
+    inset -1px -1px 0 #7f7f7f;
+}
+html[data-theme="win98"] .cta .cta-link::before { content: none; }
+
+/* Filters become classic buttons */
+html[data-theme="win98"] .filters {
+  margin: 8px 0 16px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+html[data-theme="win98"] .filters .chip {
+  padding: 6px 10px;
+  border-radius: 2px;
+  border: 1px solid #000;
+  background: #c0c0c0;
+  color: #000;
+  font-weight: 600;
+  font-size: .9rem;
+  text-shadow: none;
+  box-shadow:
+    inset 1px 1px 0 #fff,
+    inset -1px -1px 0 #7f7f7f;
+}
+
+html[data-theme="win98"] .filters .chip.is-active {
+  background: #000080;
+  color: #fff;
+  border-color: #000;
+  box-shadow: none;
+}
+
+/* Cards look like Win98 windows */
+html[data-theme="win98"] .card {
+  background: #c0c0c0;
+  border: 2px solid #000;
+  border-radius: 2px;
+  box-shadow: none;
+  backdrop-filter: none;
+  transition: none;
+}
+
+html[data-theme="win98"] .card:hover { transform: none; }
+
+html[data-theme="win98"] .card img {
+  background: #808080;
+  transition: none;
+}
+
+html[data-theme="win98"] .card .content {
+  padding: 10px 12px 12px;
+  gap: 8px;
+  grid-template-rows: var(--row-title) auto var(--row-author) var(--row-tags) auto;
+}
+
+html[data-theme="win98"] .card h3 {
+  font-family: Tahoma, "MS Sans Serif", system-ui, sans-serif;
+  font-size: 1.1rem;
+  line-height: 28px;
+  font-weight: 700;
+  color: #000;
+  text-shadow: none;
+}
+
+html[data-theme="win98"] .desc {
+  color: #000;
+  font-family: Tahoma, "MS Sans Serif", system-ui, sans-serif;
+}
+
+html[data-theme="win98"] .card .meta,
+html[data-theme="win98"] .card .meta .byline {
+  color: #000;
+}
+
+/* Card tags as flat chips */
+html[data-theme="win98"] .card .tag {
+  background: #c0c0c0;
+  border: 1px solid #000;
+  color: #000;
+  border-radius: 2px;
+  box-shadow:
+    inset 1px 1px 0 #fff,
+    inset -1px -1px 0 #7f7f7f;
+}
+
+/* Buttons become Win98 buttons */
+html[data-theme="win98"] .visit,
+html[data-theme="win98"] .cta .cta-link {
+  background: #c0c0c0;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 2px;
+  box-shadow:
+    inset 1px 1px 0 #fff,
+    inset -1px -1px 0 #7f7f7f;
+  transition: none;
+}
+
+html[data-theme="win98"] .visit::before,
+html[data-theme="win98"] .cta .cta-link::before {
+  content: none;
+}
+
+html[data-theme="win98"] .visit:hover,
+html[data-theme="win98"] .cta .cta-link:hover {
+  transform: none;
+  filter: brightness(0.98);
+}
+
+html[data-theme="win98"] .visit:active,
+html[data-theme="win98"] .cta .cta-link:active {
+  box-shadow:
+    inset -1px -1px 0 #fff,
+    inset 1px 1px 0 #7f7f7f;
+}
+
+/* Footer like a taskbar panel */
+html[data-theme="win98"] .site-footer {
+  border-top: 2px solid #000;
+  background: #c0c0c0;
+}
+
+html[data-theme="win98"] .site-footer .wrap {
+  color: #000;
+  font-family: Tahoma, "MS Sans Serif", system-ui, sans-serif;
+}
+
 
 
 /* Main */
