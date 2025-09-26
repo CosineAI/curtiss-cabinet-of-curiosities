@@ -21,6 +21,11 @@
   --glass-button-bg: rgba(59,130,246,0.22);
   --glass-button-border: rgba(59,130,246,0.5);
 
+  /* Chip tokens */
+  --chip-bg: rgba(255,255,255,0.9);
+  --chip-border: rgba(0,0,0,0.12);
+  --chip-text: var(--text);
+
   /* Animated border */
   --shine-angle: 0deg;
 
@@ -51,6 +56,11 @@ html[data-theme="dark"] {
   /* Slightly brighter translucent button background in dark mode */
   --glass-button-bg: rgba(96,165,250,0.3);
   --glass-button-border: rgba(147,197,253,0.8);
+
+  /* Chip tokens (dark) */
+  --chip-bg: rgba(18,25,34,0.85);
+  --chip-border: rgba(255,255,255,0.12);
+  --chip-text: var(--accent-contrast);
 }
 
 /* Dark mode – transparent button with animated border, readable text */
@@ -186,18 +196,15 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   gap: 6px;
   padding: 6px 12px;
   border-radius: 999px;
-  border: 0;
-  background: transparent;
-  color: var(--text);
+  border: 1px solid var(--chip-border);
+  background: var(--chip-bg);
+  color: var(--chip-text);
   font-weight: 700;
   font-size: .85rem;
   cursor: pointer;
   user-select: none;
-  transition: transform .2s ease, color .2s ease, background-color .2s ease;
-}
-
-.filters .chip:hover {
-  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(16,19,31,0.12);
+  transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, border-color .2s ease, color .2s ease;
 }
 
 .filters .chip.is-active {
