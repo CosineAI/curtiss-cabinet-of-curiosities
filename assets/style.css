@@ -410,7 +410,7 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   pointer-events: none; /* purely decorative */
   /* keep it behind header which has z-index:10 by default stacking order */
   z-index: 0;
-  /* richly colored sunset sky with vibrant reds, pinks, oranges and purples */
+  /* sunset sky with darker blues/purples in the upper half */
   background:
     /* sun halo (pink) centered on the horizon */
     radial-gradient(40vmin 40vmin at 50% 50vh,
@@ -430,22 +430,24 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
       rgba(255,206,130,.22) 47%,
       rgba(255,174,94,.13) 55%,
       rgba(0,0,0,0) 60%),
-    /* top-sky purple glow */
+    /* top-sky deep indigo glow */
     radial-gradient(90vmax 60vmax at 50% -10vmax,
-      rgba(168,85,247,.25) 0%,
-      rgba(168,85,247,0) 60%),
-    /* base multicolor sunset sky */
+      rgba(28,33,74,.20) 0%,
+      rgba(28,33,74,0) 60%),
+    /* base sunset sky with darker upper half */
     linear-gradient(to top,
+      /* lower half near horizon (warm band kept tight) */
       #0a0d1a 0%,
-      #0a0d1a 46%,
-      #3c0a2e 49%,
-      #ff3b6b 52%,
-      #ff6f59 58%,
-      #ff8a3d 64%,
-      #ffd166 70%,
-      #ff6fd8 78%,
-      #b05cff 88%,
-      #3a1554 100%);
+      #0a0d1a 44%,
+      #2b0f2e 48%,
+      #ff3b6b 50%,
+      #ff6f59 54%,
+      #ff8a3d 58%,
+      #d74c9f 62%,
+      /* upper half transitions to darker purples/blues */
+      #3a1a6e 70%,
+      #1a1440 82%,
+      #0e1226 100%);
 }
 
 /* Sunset with scanline stripes */
