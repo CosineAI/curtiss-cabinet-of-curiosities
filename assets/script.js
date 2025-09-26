@@ -328,7 +328,7 @@
   attachThemeClicks(geoThemeMenu);
 
   bindMenu(themeMenuBtn, themeMenu, "relative");
-  bindMenu(winStartBtn, winStartMenu, "relative");
+  bindMenu(winStartBtn, winStartMenu); // fixed CSS positions the menu above (upwards)
   bindMenu(geoThemeBtn, geoThemeMenu, "relative");
 
   // Initialize

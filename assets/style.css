@@ -998,6 +998,11 @@ html[data-theme="win98"] .site-footer .wrap {
   justify-content: space-between;
 }
 .win-start-btn {
+  position: fixed;
+  left: 8px;
+  bottom: 8px;
+  z-index: 1000;
+  min-width: 80px;
   appearance: none;
   border: 1px solid #000;
   background: #c0c0c0;
@@ -1017,8 +1022,9 @@ html[data-theme="win98"] .site-footer .wrap {
     inset 1px 1px 0 #7f7f7f;
 }
 .win98-menu {
-  bottom: 74px;
-  left: 16px;
+  position: fixed;
+  left: 8px;
+  bottom: 56px; /* open upwards from start button */
   border-radius: 2px;
   padding: 6px;
   border: 2px solid #000;
