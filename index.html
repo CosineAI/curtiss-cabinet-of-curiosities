@@ -13,31 +13,7 @@
   <header class="site-header">
     <div class="wrap">
       <h1 class="brand">Cosine's Curious Compendium</h1>
-      <div class="theme-buttons" role="group" aria-label="Theme selectors">
-        <button id="themeDarkBtn" class="theme-toggle dark-toggle" aria-label="Switch to Dark theme" title="Dark theme">
-          <!-- Grid pattern icon -->
-          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
-            <rect x="4" y="4" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"></rect>
-            <path d="M12 4v16M4 12h16" stroke="currentColor" stroke-width="1.5"></path>
-            <path d="M8 4v16M4 8h16M16 4v16M4 16h16" stroke="currentColor" stroke-width="1"></path>
-          </svg>
-        </button>
-        <button id="themeWinBtn" class="theme-toggle win98-toggle" aria-label="Switch to Windows 98 theme" title="Windows 98 theme">
-          <!-- Simple Windows logo: four colored panes -->
-          <svg viewBox="0 0 24 24" aria-hidden="true" class="win-logo">
-            <rect x="2" y="3" width="9" height="8" fill="#F25022"></rect>
-            <rect x="13" y="3" width="9" height="8" fill="#7FBA00"></rect>
-            <rect x="2" y="13" width="9" height="8" fill="#00A4EF"></rect>
-            <rect x="13" y="13" width="9" height="8" fill="#FFB900"></rect>
-          </svg>
-        </button>
-        <button id="themeGeoBtn" class="theme-toggle geo-toggle" aria-label="Switch to Geocities theme" title="Geocities theme">
-          <!-- Starburst badge -->
-          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
-            <path fill="currentColor" d="M12 2l2.2 4.8 5.3.6-3.9 3.6 1.1 5.2L12 14.7 7.3 16.2l1.1-5.2-3.9-3.6 5.3-.6L12 2z"></path>
-          </svg>
-        </button>
-      </div>
+      <!-- No inline theme buttons; launchers are placed elsewhere per theme -->
     </div>
   </header>
 
@@ -71,8 +47,35 @@
   <footer class="site-footer">
     <div class="wrap">
       <small>&copy; 2025 Curtis</small>
+      <!-- Win98 Start button (visible only in Win98 theme) -->
+      <button id="winStartBtn" class="win-start-btn win98-only" aria-haspopup="true" aria-controls="winStartMenu" title="Start">Start</button>
     </div>
   </footer>
+
+  <!-- Dark theme hamburger (visible only in Dark theme) -->
+  <button id="themeMenuBtn" class="theme-menu-btn dark-only" aria-haspopup="true" aria-controls="themeMenu" title="Themes" aria-label="Open theme menu">
+    <span class="hamburger" aria-hidden="true"></span>
+  </button>
+  <div id="themeMenu" class="theme-menu dark-menu" hidden>
+    <button type="button" data-theme="dark">Dark</button>
+    <button type="button" data-theme="win98">Windows 98</button>
+    <button type="button" data-theme="geocities">Geocities</button>
+  </div>
+
+  <!-- Win98 Start menu -->
+  <div id="winStartMenu" class="theme-menu win98-menu" hidden>
+    <button type="button" data-theme="dark">Dark</button>
+    <button type="button" data-theme="win98">Windows 98</button>
+    <button type="button" data-theme="geocities">Geocities</button>
+  </div>
+
+  <!-- Geocities launcher -->
+  <button id="geoThemeBtn" class="geo-theme-btn geocities-only" aria-haspopup="true" aria-controls="geoThemeMenu" title="Themez!!!">Themez!!!</button>
+  <div id="geoThemeMenu" class="theme-menu geocities-menu" hidden>
+    <button type="button" data-theme="dark">Dark</button>
+    <button type="button" data-theme="win98">Windows 98</button>
+    <button type="button" data-theme="geocities">Geocities</button>
+  </div>
 
   <script>window.INSTANT_SITE_DOMAIN = "cosine";</script>
   <script src="assets/script.js"></script>

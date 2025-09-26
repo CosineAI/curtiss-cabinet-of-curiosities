@@ -922,6 +922,152 @@ html[data-theme="geocities"] .site-footer .wrap {
   font-size: .9rem;
 }
 
+/* Visibility helpers */
+.dark-only, .win98-only, .geocities-only { display: none; }
+html[data-theme="dark"] .dark-only { display: inline-flex; }
+html[data-theme="win98"] .win98-only { display: inline-flex; }
+html[data-theme="geocities"] .geocities-only { display: inline-flex; }
+
+/* Dark theme hamburger (fixed, top-left) */
+.theme-menu-btn {
+  position: fixed;
+  left: 12px;
+  top: 12px;
+  z-index: 1000;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #1b2431;
+  background: #0e141b;
+  color: #e6eaf3;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.45);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.theme-menu-btn .hamburger {
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+  position: relative;
+  display: block;
+}
+.theme-menu-btn .hamburger::before,
+.theme-menu-btn .hamburger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+}
+.theme-menu-btn .hamburger::before { top: -6px; }
+.theme-menu-btn .hamburger::after { top: 6px; }
+
+/* Theme dropdown menus - base */
+.theme-menu {
+  position: fixed;
+  z-index: 1000;
+  min-width: 180px;
+  border-radius: 10px;
+  padding: 8px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.45);
+  border: 1px solid var(--glass-border);
+  background: var(--card);
+}
+.theme-menu button {
+  width: 100%;
+  display: block;
+  text-align: left;
+  padding: 8px 10px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.theme-menu button:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+/* Dark: dropdown appears under hamburger */
+.dark-menu { left: 12px; top: 58px; }
+
+/* Win98 Start button and menu */
+html[data-theme="win98"] .site-footer .wrap {
+  justify-content: space-between;
+}
+.win-start-btn {
+  appearance: none;
+  border: 1px solid #000;
+  background: #c0c0c0;
+  color: #000;
+  padding: 6px 12px;
+  border-radius: 2px;
+  font-family: Tahoma, "MS Sans Serif", system-ui, sans-serif;
+  box-shadow:
+    inset 1px 1px 0 #fff,
+    inset -1px -1px 0 #7f7f7f,
+    1px 1px 0 #000;
+  cursor: pointer;
+}
+.win-start-btn:active {
+  box-shadow:
+    inset -1px -1px 0 #fff,
+    inset 1px 1px 0 #7f7f7f;
+}
+.win98-menu {
+  bottom: 74px;
+  left: 16px;
+  border-radius: 2px;
+  padding: 6px;
+  border: 2px solid #000;
+  background: #c0c0c0;
+  box-shadow: none;
+}
+.win98-menu button {
+  font-family: Tahoma, "MS Sans Serif", system-ui, sans-serif;
+  color: #000;
+  border-radius: 2px;
+}
+.win98-menu button:hover {
+  background: #000080;
+  color: #fff;
+}
+
+/* Geocities floating launcher and menu */
+.geo-theme-btn {
+  position: fixed;
+  right: 14px;
+  bottom: 14px;
+  z-index: 1000;
+  padding: 10px 12px;
+  border: 3px ridge #ff00ff;
+  background: linear-gradient(180deg, #ff00ff, #0000ff);
+  color: #fff;
+  font-family: "Comic Sans MS", cursive, system-ui, sans-serif;
+  text-transform: uppercase;
+  border-radius: 8px;
+  box-shadow: 0 0 12px #00ffff, inset 0 0 8px #ff00ff;
+  cursor: pointer;
+}
+.geocities-menu {
+  right: 14px;
+  bottom: 62px;
+  border: 4px groove #00ffff;
+  background: #000;
+  box-shadow: 0 0 20px #ff00ff;
+}
+.geocities-menu button {
+  color: #00ff00;
+  border: 2px solid #ff00ff;
+  border-radius: 0;
+  background: linear-gradient(180deg, #0000ff33, #ff00ff22);
+}
+.geocities-menu button:hover {
+  filter: brightness(1.5);
+}
+
 @keyframes spin-shine {
   to { --shine-angle: 360deg; }
 }
