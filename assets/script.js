@@ -18,7 +18,7 @@
 
   function getPreferredTheme() {
     const saved = localStorage.getItem(storageKey);
-    if (saved === "win98" || saved === "dark") return saved;
+    if (saved === "win98" || saved === "geocities" || saved === "dark") return saved;
     return "dark";
   }
 
@@ -29,11 +29,13 @@
   function initTheme() {
     // Apply saved or default theme
     applyTheme(getPreferredTheme());
-    // Toggle between dark and Windows 98
+    // Toggle between dark, Windows 98, and Geocities
     if (toggleBtn) {
       toggleBtn.addEventListener("click", () => {
         const current = root.getAttribute("data-theme") || "dark";
-        const next = current === "win98" ? "dark" : "win98";
+        const order = ["dark", "win98", "geocities"];
+        const idx = order.indexOf(current);
+        const next = order[(idx + 1) % order.length] || "dark";
         applyTheme(next);
         try { localStorage.setItem(storageKey, next); } catch (_) {}
       });

@@ -357,6 +357,213 @@ html[data-theme="win98"] .site-footer .wrap {
   font-family: Tahoma, "MS Sans Serif", system-ui, sans-serif;
 }
 
+/* =========================
+   Geocities Theme (1999 web vibes)
+   ========================= */
+html[data-theme="geocities"] {
+  --bg: #000000;
+  --text: #00ff00;           /* neon green text */
+  --muted: #ff00ff;          /* magenta accents */
+  --card: #ffff00;           /* loud yellow panels */
+  --card-border: #ff00ff;    /* magenta borders */
+  --header-bg: #0000ff;      /* bright blue header */
+  --header-border: #ff00ff;
+  --accent: #ff0000;         /* red buttons/links */
+  --accent-contrast: #ffffff;
+  --shadow: none;
+
+  --glass: #ffff00;
+  --glass-border: #ff00ff;
+  --glass-button-bg: #ff0000;
+  --glass-button-border: #000000;
+
+  --chip-bg: #00ffff;
+  --chip-border: #000000;
+  --chip-text: #000000;
+}
+
+/* Hide synthwave in Geocities */
+html[data-theme="geocities"] .bg-synthwave { display: none; }
+
+/* Comic Sans, baby */
+html[data-theme="geocities"] body {
+  background:
+    repeating-linear-gradient(45deg, #222 0 20px, #111 20px 40px),
+    #000;
+  color: var(--text);
+  font-family: "Comic Sans MS", "Marker Felt", cursive, system-ui, sans-serif;
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><text y='24' x='0' font-size='24'>💫</text></svg>"), auto;
+}
+
+/* Header: bright and loud */
+html[data-theme="geocities"] .site-header {
+  background: linear-gradient(90deg, #0000ff, #ff00ff);
+  border-bottom: 3px dashed #ffff00;
+}
+html[data-theme="geocities"] .site-header .wrap { min-height: 64px; }
+html[data-theme="geocities"] .brand {
+  font-family: "Comic Sans MS", cursive, system-ui, sans-serif;
+  font-weight: 900;
+  font-size: 3rem;
+  color: #ffff00;
+  text-shadow:
+    2px 2px 0 #ff00ff,
+    -2px -2px 0 #00ffff;
+}
+
+/* Toggle button looks like a gaudy badge */
+.theme-toggle.win98-toggle {
+  border: 2px ridge #ff00ff;
+  background: linear-gradient(180deg, #ffff00, #ffcc00);
+  color: #000;
+  border-radius: 6px;
+  box-shadow: 0 0 10px #ff00ff;
+}
+.theme-toggle.win98-toggle .win-logo { filter: saturate(1.8) contrast(1.4); }
+
+/* Geocities banner strip */
+.geo-banner {
+  display: none;
+}
+html[data-theme="geocities"] .geo-banner {
+  display: block;
+  background:
+    repeating-linear-gradient(90deg, #ff0000 0 12px, #ffff00 12px 24px, #00ff00 24px 36px, #0000ff 36px 48px);
+  border-top: 4px double #00ffff;
+  border-bottom: 4px double #00ffff;
+}
+.geo-banner-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.geo-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  background: #000;
+  color: #00ff00;
+  border: 2px dotted #ff00ff;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: .5px;
+}
+.geo-marquee {
+  overflow: hidden;
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 240px;
+  border: 2px solid #ff00ff;
+  background: #000;
+}
+.geo-marquee span {
+  position: relative;
+  display: inline-block;
+  padding: 4px 10px;
+  color: #ffff00;
+  animation: geo-scroll 12s linear infinite;
+  white-space: nowrap;
+}
+@keyframes geo-scroll {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(-100%); }
+}
+
+/* CTA and chips = chaotic */
+html[data-theme="geocities"] .cta {
+  border: 4px groove #00ffff;
+  background: #000;
+  box-shadow: 0 0 20px #ff00ff inset;
+}
+html[data-theme="geocities"] .cta-link {
+  color: #fff;
+  background: linear-gradient(180deg, #ff0000, #990000);
+  border: 3px outset #ffff00;
+  text-decoration: underline wavy #00ffff;
+}
+html[data-theme="geocities"] .cta .cta-link::before { content: none; }
+
+html[data-theme="geocities"] .filters .chip {
+  background: linear-gradient(180deg, #00ffff, #00a0a0);
+  color: #000;
+  border: 3px ridge #ff00ff;
+  text-shadow: none;
+}
+html[data-theme="geocities"] .filters .chip.is-active {
+  background: linear-gradient(180deg, #ff00ff, #a000a0);
+  color: #ffff00;
+  border-color: #ffff00;
+}
+
+/* Cards like garish panels */
+html[data-theme="geocities"] .card {
+  background: var(--card);
+  border: 5px double var(--card-border);
+  border-radius: 0;
+  box-shadow: 0 0 12px #ff00ff;
+}
+html[data-theme="geocities"] .card:hover { transform: rotate(-0.3deg) scale(1.01); }
+html[data-theme="geocities"] .card img { filter: contrast(1.2) saturate(1.4); }
+
+html[data-theme="geocities"] .card .content {
+  gap: 10px;
+}
+
+html[data-theme="geocities"] .card h3 {
+  font-family: "Comic Sans MS", cursive, system-ui, sans-serif;
+  color: #000;
+  text-shadow: 2px 2px 0 #ffff00;
+}
+
+html[data-theme="geocities"] .desc {
+  color: #ff00ff;
+  font-weight: 700;
+}
+
+html[data-theme="geocities"] .card .meta,
+html[data-theme="geocities"] .card .meta .byline {
+  color: #000;
+}
+
+/* Tags: bright pills */
+html[data-theme="geocities"] .card .tag {
+  background: linear-gradient(180deg, #ffff00, #ffcc00);
+  border: 2px solid #000;
+  color: #000;
+  border-radius: 12px;
+}
+
+/* Buttons: flashing chaos */
+html[data-theme="geocities"] .visit,
+html[data-theme="geocities"] .cta .cta-link {
+  border-radius: 0;
+  border: 4px outset #ff00ff;
+  background: linear-gradient(180deg, #ff0000, #a00000);
+  color: #ffff00;
+  text-decoration: underline;
+  animation: blink 1s steps(2, start) infinite;
+}
+html[data-theme="geocities"] .visit::before,
+html[data-theme="geocities"] .cta .cta-link::before { content: none; }
+
+@keyframes blink {
+  50% { filter: brightness(1.6); }
+}
+
+/* Footer like a web counter strip */
+html[data-theme="geocities"] .site-footer {
+  background:
+    repeating-linear-gradient(90deg, #000 0 10px, #111 10px 20px);
+  border-top: 6px dashed #ff00ff;
+}
+html[data-theme="geocities"] .site-footer .wrap {
+  color: #00ff00;
+  font-family: "Comic Sans MS", cursive, system-ui, sans-serif;
+}
+
 
 
 /* Main */
