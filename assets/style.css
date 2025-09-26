@@ -399,9 +399,17 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   pointer-events: none; /* purely decorative */
   /* keep it behind header which has z-index:10 by default stacking order */
   z-index: 0;
-  /* subtle space glow */
+  /* space glow + sun halo behind the striped sun */
   background:
+    /* sun halo glow centered on horizon */
+    radial-gradient(40vmin 40vmin at 50% 50vh,
+      rgba(255,154,98,.22) 0%,
+      rgba(255,74,161,.28) 35%,
+      rgba(124,255,203,.10) 62%,
+      rgba(0,0,0,0) 75%),
+    /* subtle bottom glow */
     radial-gradient(1000px 500px at 50% 100%, rgba(255,64,160,.12), transparent 60%),
+    /* base night sky */
     linear-gradient(to top, rgba(8,10,18,.96), rgba(20,12,40,.6) 50%, rgba(10,12,20,.4) 100%);
 }
 
@@ -440,14 +448,17 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   top: 50vh;      /* start grid at mid-screen */
   bottom: -20vh;  /* extend beyond bottom so it fills and allows perspective foreshortening */
   transform-origin: top center;
-  transform: perspective(900px) rotateX(60deg);
+  /* stronger perspective to emphasize convergence toward the horizon */
+  transform: perspective(650px) rotateX(68deg);
   background:
-    /* horizon fade */
-    linear-gradient(to top, rgba(20,0,40,.85), rgba(20,0,40,0) 60%),
+    /* atmospheric fade rising from the horizon */
+    linear-gradient(to top, rgba(20,0,40,.9), rgba(20,0,40,0) 60%),
     /* vertical grid lines */
-    repeating-linear-gradient(to right, rgba(168,85,247,.55) 0 2px, transparent 2px 60px),
+    repeating-linear-gradient(to right, rgba(168,85,247,.6) 0 2px, transparent 2px 60px),
     /* horizontal grid lines */
-    repeating-linear-gradient(to top, rgba(168,85,247,.4) 0 2px, transparent 2px 60px);
+    repeating-linear-gradient(to top, rgba(168,85,247,.5) 0 2px, transparent 2px 60px),
+    /* base plane fill to make squares dark blue */
+    linear-gradient(#061128, #061128);
   box-shadow:
     0 -10px 40px rgba(168,85,247,.25) inset,
     0 0 60px rgba(99,102,241,.15) inset;
