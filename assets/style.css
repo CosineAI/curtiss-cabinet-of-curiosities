@@ -410,7 +410,7 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   content: "";
   position: absolute;
   left: 50%;
-  top: 14vh;
+  top: calc(50vh - 19vmin); /* center the sun on the horizon so half is covered by grid */
   width: 38vmin;
   height: 38vmin;
   transform: translateX(-50%);
@@ -428,6 +428,7 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
     drop-shadow(0 0 20px rgba(255,74,161,.55))
     drop-shadow(0 0 40px rgba(255,154,98,.35));
   opacity: .95;
+  z-index: 1; /* place sun behind the grid */
 }
 
 /* Purple grid horizon */
@@ -436,13 +437,13 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   position: absolute;
   left: -10vw;
   right: -10vw;
-  bottom: -12vh;
-  height: 70vh;
-  transform-origin: 50% 100%;
-  transform: perspective(700px) rotateX(60deg);
+  top: 50vh;      /* start grid at mid-screen */
+  bottom: -20vh;  /* extend beyond bottom so it fills and allows perspective foreshortening */
+  transform-origin: top center;
+  transform: perspective(900px) rotateX(60deg);
   background:
     /* horizon fade */
-    linear-gradient(to top, rgba(20,0,40,.8), rgba(20,0,40,0) 60%),
+    linear-gradient(to top, rgba(20,0,40,.85), rgba(20,0,40,0) 60%),
     /* vertical grid lines */
     repeating-linear-gradient(to right, rgba(168,85,247,.55) 0 2px, transparent 2px 60px),
     /* horizontal grid lines */
@@ -450,4 +451,5 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   box-shadow:
     0 -10px 40px rgba(168,85,247,.25) inset,
     0 0 60px rgba(99,102,241,.15) inset;
+  z-index: 2; /* ensure grid overlays the lower half of the sun */
 }
