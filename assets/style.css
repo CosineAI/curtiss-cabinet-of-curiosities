@@ -23,6 +23,11 @@
 
   /* Animated border */
   --shine-angle: 0deg;
+
+  /* Card row heights (fixed for consistent layout) */
+  --row-title: 28px;  /* 1-line title row */
+  --row-desc: 44px;   /* 2-line description row */
+  --row-meta: 28px;   /* 1-line meta (author + tags) row */
 }
 
 html { color-scheme: light dark; }
@@ -258,16 +263,20 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   padding: 12px 14px 16px;
   display: grid;
   gap: 10px;
-  grid-template-rows: auto auto 1fr auto; /* title, desc, spacer, button */
+  /* fixed-height rows: title, description, meta; then button */
+  grid-template-rows: var(--row-title) var(--row-desc) var(--row-meta) auto;
   align-content: start;
 }
 
 .card h3 {
   margin: 0;
   font-size: 2rem;
-  line-height: 28px;
+  line-height: 28px; /* 1 line tall to match --row-title */
   font-weight: 600;
   font-family: "Honk", system-ui, sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .desc {
@@ -284,21 +293,30 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
 .card .meta {
   color: var(--muted);
   font-size: .875rem;
-  overflow-wrap: anywhere;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;   /* author + tags on same row */
+  align-items: center;
   gap: 8px;
+  white-space: nowrap;
+  overflow: hidden;      /* trim overflow if too many tags */
+  min-height: var(--row-meta);
 }
 
 .card .meta .byline {
   color: var(--muted);
   font-size: .85rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 0 1 40%;
 }
 
 .card .meta .tags {
-  display: flex;
-  flex-wrap: wrap;
+  display: inline-flex;
+  flex-wrap: nowrap;    /* keep tags in one row */
   gap: 6px;
+  overflow: hidden;     /* hide overflowed chips */
+  flex: 1 1 auto;       /* take remaining space next to byline */
 }
 
 .card .meta .tag {
@@ -314,6 +332,8 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   border: 1px solid var(--glass-button-border);
   color: var(--accent-contrast);
   user-select: none;
+  white-space: nowrap;  /* keep chip text on one line */
+  flex: 0 0 auto;       /* prevent chips from shrinking */
 }
 
 .visit,
