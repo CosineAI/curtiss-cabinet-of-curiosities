@@ -6,9 +6,7 @@
 (function () {
   "use strict";
 
-  const storageKey = "theme-preference";
   const root = document.documentElement;
-  const toggleBtn = document.getElementById("themeToggle");
   const grid = document.getElementById("grid");
   const empty = document.getElementById("empty");
   const filters = document.getElementById("filters");
@@ -27,14 +25,8 @@
   }
 
   function initTheme() {
-    applyTheme(getPreferredTheme());
-    if (toggleBtn) {
-      toggleBtn.addEventListener("click", () => {
-        const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-        applyTheme(next);
-        localStorage.setItem(storageKey, next);
-      });
-    }
+    // Force dark mode and remove toggle functionality
+    root.setAttribute("data-theme", "dark");
   }
 
   async function loadCuriosities() {

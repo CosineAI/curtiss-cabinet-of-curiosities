@@ -121,36 +121,7 @@ body {
   width: 100%;
 }
 
-/* Keep the toggle at the right while title remains centered */
-.site-header .theme-toggle {
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-}
 
-/* Theme toggle */
-.theme-toggle {
-  appearance: none;
-  border: 1px solid var(--card-border);
-  background: var(--card);
-  color: var(--text);
-  padding: 8px 10px;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: var(--shadow);
-  transition: transform .28s cubic-bezier(.2,.8,.2,1), border-color .28s cubic-bezier(.2,.8,.2,1), background-color .28s cubic-bezier(.2,.8,.2,1), color .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s cubic-bezier(.2,.8,.2,1);
-  cursor: pointer;
-  will-change: transform, box-shadow;
-}
-
-.theme-toggle:hover { transform: none; }
-.theme-toggle svg { width: 20px; height: 20px; display: block; }
-
-html[data-theme="dark"] .theme-toggle [data-icon="sun"] { display: none; }
-html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
 
 /* Main */
 .site-main .wrap {
