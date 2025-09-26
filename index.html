@@ -50,8 +50,12 @@
     </div>
   </footer>
 
-  <!-- Win98 Start button (visible only in Win98 theme) -->
-  <button id="winStartBtn" class="win-start-btn win98-only" aria-haspopup="true" aria-controls="winStartMenu" title="Start">Start</button>
+  <!-- Win98 Taskbar (visible only in Win98 theme) -->
+  <div class="win98-taskbar win98-only" role="toolbar" aria-label="Windows 98 taskbar">
+    <button id="winStartBtn" class="win-start-btn" aria-haspopup="true" aria-controls="winStartMenu" title="Start">Start</button>
+    <div class="taskbar-spacer" aria-hidden="true"></div>
+    <span id="winClock" class="win-clock" aria-live="polite" aria-atomic="true"></span>
+  </div>
 
   <!-- Dark theme hamburger (visible only in Dark theme) -->
   <button id="themeMenuBtn" class="theme-menu-btn dark-only" aria-haspopup="true" aria-controls="themeMenu" title="Themes" aria-label="Open theme menu">

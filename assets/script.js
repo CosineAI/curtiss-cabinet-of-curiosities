@@ -331,6 +331,20 @@
   bindMenu(winStartBtn, winStartMenu); // fixed CSS positions the menu above (upwards)
   bindMenu(geoThemeBtn, geoThemeMenu, "relative");
 
+  // Simple Win98 taskbar clock
+  function updateWinClock() {
+    const el = document.getElementById("winClock");
+    if (!el) return;
+    const d = new Date();
+    let h = d.getHours();
+    const m = d.getMinutes().toString().padStart(2, "0");
+    const ampm = h >= 12 ? "PM" : "AM";
+    h = h % 12; if (h === 0) h = 12;
+    el.textContent = `${h}:${m} ${ampm}`;
+  }
+  setInterval(updateWinClock, 1000);
+  updateWinClock();
+
   // Initialize
   initTheme();
   loadCuriosities().then((items) => {
