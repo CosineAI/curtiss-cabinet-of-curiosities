@@ -167,13 +167,23 @@ body {
 
 .theme-toggle.win98-toggle:hover { filter: brightness(0.98); }
 
-/* Geocities badge button */
+/* Dark theme button */
+.theme-toggle.dark-toggle {
+  border: 1px solid #1b2431;
+  background: #0e141b;
+  color: #e6eaf3;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.35);
+}
+.theme-toggle.dark-toggle:hover { filter: brightness(1.05); }
+
+/* Geocities badge button (match neon magenta/blue/cyan, avoid yellow) */
 .theme-toggle.geo-toggle {
   border: 2px ridge #ff00ff;
-  background: linear-gradient(180deg, #ffff00, #ffcc00);
-  color: #000;
+  background: linear-gradient(180deg, #ff00ff, #0000ff);
+  color: #ffffff;
   border-radius: 6px;
-  box-shadow: 0 0 10px #ff00ff;
+  box-shadow: 0 0 10px #00ffff, inset 0 0 6px #ff00ff;
 }
 .theme-toggle.geo-toggle .icon { filter: saturate(1.6) contrast(1.3); }
 
