@@ -73,7 +73,15 @@ html[data-theme="dark"] .cta .cta-link {
 }
 
 html[data-theme="dark"] .visit:hover {
-  transform: translateY(-1px);
+  transform: none;
+}
+
+/* Disable hover lift for cards and CTA buttons in Synthwave (dark) */
+html[data-theme="dark"] .card:hover {
+  transform: none;
+}
+html[data-theme="dark"] .cta .cta-link:hover {
+  transform: none;
 }
 
 /* Base layout */
@@ -121,36 +129,548 @@ body {
   width: 100%;
 }
 
-/* Keep the toggle at the right while title remains centered */
-.site-header .theme-toggle {
+/* Theme buttons container (top-right) */
+.site-header .theme-buttons {
   position: absolute;
   right: 16px;
   top: 50%;
   transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
-/* Theme toggle */
+/* Base theme button */
 .theme-toggle {
   appearance: none;
   border: 1px solid var(--card-border);
   background: var(--card);
   color: var(--text);
-  padding: 8px 10px;
-  border-radius: 999px;
+  padding: 6px 8px;
+  border-radius: 8px;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
   box-shadow: var(--shadow);
-  transition: transform .28s cubic-bezier(.2,.8,.2,1), border-color .28s cubic-bezier(.2,.8,.2,1), background-color .28s cubic-bezier(.2,.8,.2,1), color .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s cubic-bezier(.2,.8,.2,1);
   cursor: pointer;
-  will-change: transform, box-shadow;
+}
+.theme-toggle .icon,
+.win-logo {
+  width: 20px;
+  height: 20px;
+  display: block;
 }
 
-.theme-toggle:hover { transform: none; }
-.theme-toggle svg { width: 20px; height: 20px; display: block; }
+/* Windows 98-style button */
+.theme-toggle.win98-toggle {
+  border: 1px solid #000;
+  background: #c0c0c0;
+  color: #000;
+  border-radius: 2px;
+  box-shadow:
+    inset 1px 1px 0 #fff,
+    inset -1px -1px 0 #7f7f7f,
+    1px 1px 0 #000;
+}
 
-html[data-theme="dark"] .theme-toggle [data-icon="sun"] { display: none; }
-html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
+.theme-toggle.win98-toggle:hover { filter: brightness(0.98); }
+
+/* Dark theme button */
+.theme-toggle.dark-toggle {
+  border: 1px solid #1b2431;
+  background: #0e141b;
+  color: #e6eaf3;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.35);
+}
+.theme-toggle.dark-toggle:hover { filter: brightness(1.05); }
+
+/* Geocities badge button (match neon magenta/blue/cyan, avoid yellow) */
+.theme-toggle.geo-toggle {
+  border: 2px ridge #ff00ff;
+  background: linear-gradient(180deg, #ff00ff, #0000ff);
+  color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 0 10px #00ffff, inset 0 0 6px #ff00ff;
+}
+.theme-toggle.geo-toggle .icon { filter: saturate(1.6) contrast(1.3); }
+
+/* Windows 98 Theme */
+html[data-theme="win98"] {
+  --bg: #008080;            /* classic teal desktop */
+  --text: #000000;
+  --muted: #000000;
+  --card: #c0c0c0;          /* dialog grey */
+  --card-border: #000000;
+  --header-bg: #000080;     /* title bar blue */
+  --header-border: #000000;
+  --accent: #000080;
+  --accent-contrast: #ffffff;
+  --shadow: none;
+
+  --glass: #c0c0c0;
+  --glass-border: #000000;
+  --glass-button-bg: #c0c0c0;
+  --glass-button-border: #000000;
+
+  --chip-bg: #c0c0c0;
+  --chip-border: #000000;
+  --chip-text: #000000;
+}
+
+/* Hide synthwave background in Win98 mode */
+html[data-theme="win98"] .bg-synthwave { display: none; }
+
+/* Header becomes a title bar */
+html[data-theme="win98"] .site-header {
+  position: static;
+  background: var(--header-bg);
+  border-bottom: 2px solid #000;
+}
+
+html[data-theme="win98"] .site-header .wrap {
+  min-height: 44px;
+}
+
+html[data-theme="win98"] .brand {
+  font-family: Tahoma, "MS Sans Serif", "Segoe UI", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 44px;
+  color: #fff;
+  text-shadow: 1px 1px 0 #000;
+}
+
+/* Base layout overrides */
+html[data-theme="win98"] body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Tahoma, "MS Sans Serif", "Segoe UI", system-ui, sans-serif;
+}
+
+/* CTA turns into a flat panel */
+html[data-theme="win98"] .cta {
+  margin: 8px 0 16px;
+  padding: 10px 12px;
+  border: 2px solid #000;
+  border-radius: 2px;
+  background: #c0c0c0;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+html[data-theme="win98"] .cta-link {
+  background: #c0c0c0;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 2px;
+  box-shadow:
+    inset 1px 1px 0 #fff,
+    inset -1px -1px 0 #7f7f7f;
+}
+html[data-theme="win98"] .cta .cta-link::before { content: none; }
+
+/* Filters become classic buttons */
+html[data-theme="win98"] .filters {
+  margin: 8px 0 16px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+html[data-theme="win98"] .filters .chip {
+  padding: 6px 10px;
+  border-radius: 2px;
+  border: 1px solid #000;
+  background: #c0c0c0;
+  color: #000;
+  font-weight: 600;
+  font-size: .9rem;
+  text-shadow: none;
+  box-shadow:
+    inset 1px 1px 0 #fff,
+    inset -1px -1px 0 #7f7f7f;
+}
+
+html[data-theme="win98"] .filters .chip.is-active {
+  background: #000080;
+  color: #fff;
+  border-color: #000;
+  box-shadow: none;
+}
+
+/* Cards look like Win98 windows */
+html[data-theme="win98"] .card {
+  background: #c0c0c0;
+  border: 2px solid #000;
+  border-radius: 2px;
+  box-shadow: none;
+  backdrop-filter: none;
+  transition: none;
+}
+
+html[data-theme="win98"] .card:hover { transform: none; }
+html[data-theme="win98"] .card:hover img { transform: none; }
+
+html[data-theme="win98"] .card img {
+  background: #808080;
+  transition: none;
+}
+
+html[data-theme="win98"] .card .content {
+  padding: 10px 12px 12px;
+  gap: 8px;
+  grid-template-rows: var(--row-title) auto var(--row-author) var(--row-tags) auto;
+}
+
+html[data-theme="win98"] .card h3 {
+  font-family: Tahoma, "MS Sans Serif", system-ui, sans-serif;
+  font-size: 1.1rem;
+  line-height: 28px;
+  font-weight: 700;
+  color: #000;
+  text-shadow: none;
+}
+
+html[data-theme="win98"] .desc {
+  color: #000;
+  font-family: Tahoma, "MS Sans Serif", system-ui, sans-serif;
+}
+
+html[data-theme="win98"] .card .meta,
+html[data-theme="win98"] .card .meta .byline {
+  color: #000;
+}
+
+/* Card tags as flat chips */
+html[data-theme="win98"] .card .tag {
+  background: #c0c0c0;
+  border: 1px solid #000;
+  color: #000;
+  border-radius: 2px;
+  box-shadow:
+    inset 1px 1px 0 #fff,
+    inset -1px -1px 0 #7f7f7f;
+}
+
+/* Buttons become Win98 buttons */
+html[data-theme="win98"] .visit,
+html[data-theme="win98"] .cta .cta-link {
+  background: #c0c0c0;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 2px;
+  box-shadow:
+    inset 1px 1px 0 #fff,
+    inset -1px -1px 0 #7f7f7f;
+  transition: none;
+}
+
+html[data-theme="win98"] .visit::before,
+html[data-theme="win98"] .cta .cta-link::before {
+  content: none;
+}
+
+html[data-theme="win98"] .visit:hover,
+html[data-theme="win98"] .cta .cta-link:hover {
+  transform: none;
+  filter: brightness(0.98);
+}
+
+html[data-theme="win98"] .visit:active,
+html[data-theme="win98"] .cta .cta-link:active {
+  box-shadow:
+    inset -1px -1px 0 #fff,
+    inset 1px 1px 0 #7f7f7f;
+}
+
+/* Footer like a taskbar panel */
+html[data-theme="win98"] .site-footer {
+  display: none;
+}
+
+html[data-theme="win98"] .site-footer .wrap {
+  color: #000;
+  font-family: Tahoma, "MS Sans Serif", system-ui, sans-serif;
+}
+
+/* Win98 fixed taskbar */
+.win98-taskbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  background: #c0c0c0;
+  border-top: 2px solid #000;
+  box-shadow:
+    inset 0 1px 0 #fff,
+    inset 0 -1px 0 #7f7f7f;
+}
+html[data-theme="win98"] body { padding-bottom: 48px; } /* prevent overlap */
+
+.win-start-btn {
+  min-width: 86px;
+  appearance: none;
+  border: 1px solid #000;
+  background: #c0c0c0;
+  color: #000;
+  padding: 6px 12px;
+  border-radius: 2px;
+  font-family: Tahoma, "MS Sans Serif", system-ui, sans-serif;
+  box-shadow:
+    inset 1px 1px 0 #fff,
+    inset -1px -1px 0 #7f7f7f,
+    1px 1px 0 #000;
+  cursor: pointer;
+}
+.win-start-btn:active {
+  box-shadow:
+    inset -1px -1px 0 #fff,
+    inset 1px 1px 0 #7f7f7f;
+}
+
+.taskbar-spacer { flex: 1 1 auto; }
+
+.win-clock {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 84px;
+  padding: 4px 8px;
+  border: 1px inset #7f7f7f;
+  background: #c0c0c0;
+  color: #000;
+  font-family: Tahoma, "MS Sans Serif", system-ui, sans-serif;
+  font-size: 12px;
+}
+
+/* Start menu position (opens upward just above the taskbar) */
+.win98-menu {
+  position: fixed;
+  left: 8px;
+  bottom: 40px;
+  border-radius: 0 !important;
+  padding: 6px;
+  border: 2px solid #000;
+  background: #c0c0c0;
+  box-shadow: none;
+}
+
+/* =========================
+   Geocities Theme (1999 web vibes)
+   ========================= */
+html[data-theme="geocities"] {
+  --bg: #000000;
+  --text: #00ff00;           /* neon green text */
+  --muted: #ff00ff;          /* magenta accents */
+  --card: #ffff00;           /* loud yellow panels */
+  --card-border: #ff00ff;    /* magenta borders */
+  --header-bg: #0000ff;      /* bright blue header */
+  --header-border: #ff00ff;
+  --accent: #ff0000;         /* red buttons/links */
+  --accent-contrast: #ffffff;
+  --shadow: none;
+
+  --glass: #ffff00;
+  --glass-border: #ff00ff;
+  --glass-button-bg: #ff0000;
+  --glass-button-border: #000000;
+
+  --chip-bg: #00ffff;
+  --chip-border: #000000;
+  --chip-text: #000000;
+}
+
+/* Hide synthwave in Geocities */
+html[data-theme="geocities"] .bg-synthwave { display: none; }
+
+/* Comic Sans, baby */
+html[data-theme="geocities"] body {
+  background:
+    repeating-linear-gradient(45deg, #222 0 20px, #111 20px 40px),
+    #000;
+  color: var(--text);
+  font-family: "Comic Sans MS", "Marker Felt", cursive, system-ui, sans-serif;
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><text y='24' x='0' font-size='24'>💫</text></svg>"), auto;
+}
+
+/* Header: bright and loud */
+html[data-theme="geocities"] .site-header {
+  background: linear-gradient(90deg, #0000ff, #ff00ff);
+  border-bottom: 3px dashed #ffff00;
+}
+html[data-theme="geocities"] .site-header .wrap { min-height: 64px; }
+html[data-theme="geocities"] .brand {
+  font-family: "Comic Sans MS", cursive, system-ui, sans-serif;
+  font-weight: 900;
+  font-size: 3rem;
+  color: #ffff00;
+  text-shadow:
+    2px 2px 0 #ff00ff,
+    -2px -2px 0 #00ffff;
+}
+
+/* Toggle button looks like a gaudy badge */
+.theme-toggle.win98-toggle {
+  border: 2px ridge #ff00ff;
+  background: linear-gradient(180deg, #ffff00, #ffcc00);
+  color: #000;
+  border-radius: 6px;
+  box-shadow: 0 0 10px #ff00ff;
+}
+.theme-toggle.win98-toggle .win-logo { filter: saturate(1.8) contrast(1.4); }
+
+/* Geocities banner strip */
+.geo-banner {
+  display: none;
+}
+html[data-theme="geocities"] .geo-banner {
+  display: block;
+  background:
+    repeating-linear-gradient(90deg, #ff0000 0 12px, #ffff00 12px 24px, #00ff00 24px 36px, #0000ff 36px 48px);
+  border-top: 4px double #00ffff;
+  border-bottom: 4px double #00ffff;
+}
+.geo-banner-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.geo-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  background: #000;
+  color: #00ff00;
+  border: 2px dotted #ff00ff;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: .5px;
+}
+.geo-marquee {
+  overflow: hidden;
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 240px;
+  border: 2px solid #ff00ff;
+  background: #000;
+}
+.geo-marquee span {
+  position: relative;
+  display: inline-block;
+  padding: 4px 10px;
+  color: #ffff00;
+  animation: geo-scroll 12s linear infinite;
+  white-space: nowrap;
+}
+@keyframes geo-scroll {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(-100%); }
+}
+
+/* CTA and chips = chaotic */
+html[data-theme="geocities"] .cta {
+  border: 4px groove #00ffff;
+  background: #000;
+  box-shadow: 0 0 20px #ff00ff inset;
+}
+html[data-theme="geocities"] .cta-link {
+  color: #fff;
+  background: linear-gradient(180deg, #ff0000, #990000);
+  border: 3px outset #ffff00;
+  text-decoration: underline wavy #00ffff;
+}
+html[data-theme="geocities"] .cta .cta-link::before { content: none; }
+
+html[data-theme="geocities"] .filters .chip {
+  background: linear-gradient(180deg, #00ffff, #00a0a0);
+  color: #000;
+  border: 3px ridge #ff00ff;
+  text-shadow: none;
+}
+html[data-theme="geocities"] .filters .chip.is-active {
+  background: linear-gradient(180deg, #ff00ff, #a000a0);
+  color: #ffff00;
+  border-color: #ffff00;
+}
+
+/* Cards like garish panels */
+html[data-theme="geocities"] .card {
+  background: var(--card);
+  border: 5px double var(--card-border);
+  border-radius: 0;
+  box-shadow: 0 0 12px #ff00ff;
+}
+html[data-theme="geocities"] .card:hover { transform: rotate(-0.3deg) scale(1.01); }
+html[data-theme="geocities"] .card img { filter: contrast(1.2) saturate(1.4); }
+
+html[data-theme="geocities"] .card .content {
+  gap: 10px;
+}
+
+html[data-theme="geocities"] .card h3 {
+  font-family: "Comic Sans MS", cursive, system-ui, sans-serif;
+  color: #000;
+  text-shadow: 2px 2px 0 #ffff00;
+}
+
+html[data-theme="geocities"] .desc {
+  color: #ff00ff;
+  font-weight: 700;
+}
+
+html[data-theme="geocities"] .card .meta,
+html[data-theme="geocities"] .card .meta .byline {
+  color: #000;
+}
+
+/* Tags: bright pills */
+html[data-theme="geocities"] .card .tag {
+  background: linear-gradient(180deg, #ffff00, #ffcc00);
+  border: 2px solid #000;
+  color: #000;
+  border-radius: 12px;
+}
+
+/* Buttons: flashing chaos */
+html[data-theme="geocities"] .visit,
+html[data-theme="geocities"] .cta .cta-link {
+  border-radius: 0;
+  border: 4px outset #ff00ff;
+  background: linear-gradient(180deg, #ff0000, #a00000);
+  color: #ffff00;
+  text-decoration: underline;
+  animation: blink 1s steps(2, start) infinite;
+}
+html[data-theme="geocities"] .visit::before,
+html[data-theme="geocities"] .cta .cta-link::before { content: none; }
+
+@keyframes blink {
+  50% { filter: brightness(1.6); }
+}
+
+/* Footer like a web counter strip */
+html[data-theme="geocities"] .site-footer {
+  background:
+    repeating-linear-gradient(90deg, #000 0 10px, #111 10px 20px);
+  border-top: 6px dashed #ff00ff;
+}
+html[data-theme="geocities"] .site-footer .wrap {
+  color: #00ff00;
+  font-family: "Comic Sans MS", cursive, system-ui, sans-serif;
+}
+
+
 
 /* Main */
 .site-main .wrap {
@@ -476,6 +996,125 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] { display: none; }
   justify-content: center;
   color: var(--muted);
   font-size: .9rem;
+}
+
+/* Visibility helpers */
+.dark-only, .win98-only, .geocities-only { display: none; }
+html[data-theme="dark"] .dark-only { display: inline-flex; }
+html[data-theme="win98"] .win98-only { display: inline-flex; }
+html[data-theme="geocities"] .geocities-only { display: inline-flex; }
+
+/* Dark theme hamburger (fixed, top-left) */
+.theme-menu-btn {
+  position: fixed;
+  left: 12px;
+  top: 12px;
+  z-index: 1000;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #1b2431;
+  background: #0e141b;
+  color: #e6eaf3;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.45);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.theme-menu-btn .hamburger {
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+  position: relative;
+  display: block;
+}
+.theme-menu-btn .hamburger::before,
+.theme-menu-btn .hamburger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+}
+.theme-menu-btn .hamburger::before { top: -6px; }
+.theme-menu-btn .hamburger::after { top: 6px; }
+
+/* Theme dropdown menus - base */
+.theme-menu {
+  position: fixed;
+  z-index: 1000;
+  min-width: 180px;
+  border-radius: 10px;
+  padding: 8px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.45);
+  border: 1px solid var(--glass-border);
+  background: var(--card);
+}
+.theme-menu button {
+  width: 100%;
+  display: block;
+  text-align: left;
+  padding: 8px 10px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.theme-menu button:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+/* Dark: dropdown appears under hamburger */
+.dark-menu { left: 12px; top: 58px; }
+
+/* Win98 Start button and menu */
+html[data-theme="win98"] .site-footer .wrap {
+  justify-content: space-between;
+}
+
+.win98-menu button {
+  font-family: Tahoma, "MS Sans Serif", system-ui, sans-serif;
+  color: #000;
+  border-radius: 2px;
+}
+.win98-menu button:hover {
+  background: #000080;
+  color: #fff;
+}
+
+/* Geocities floating launcher and menu */
+.geo-theme-btn {
+  position: fixed;
+  left: 14px;
+  top: 12px;
+  z-index: 1000;
+  padding: 10px 12px;
+  border: 3px ridge #ff00ff;
+  background: linear-gradient(180deg, #ff00ff, #0000ff);
+  color: #fff;
+  font-family: "Comic Sans MS", cursive, system-ui, sans-serif;
+  text-transform: uppercase;
+  border-radius: 8px;
+  box-shadow: 0 0 12px #00ffff, inset 0 0 8px #ff00ff;
+  cursor: pointer;
+}
+.geocities-menu {
+  left: 14px;
+  top: 58px;
+  border: 4px groove #00ffff;
+  background: #000;
+  box-shadow: 0 0 20px #ff00ff;
+}
+.geocities-menu button {
+  color: #00ff00;
+  border: 2px solid #ff00ff;
+  border-radius: 0;
+  background: linear-gradient(180deg, #0000ff33, #ff00ff22);
+}
+.geocities-menu button:hover {
+  filter: brightness(1.5);
 }
 
 @keyframes spin-shine {

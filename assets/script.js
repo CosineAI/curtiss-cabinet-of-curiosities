@@ -1,5 +1,5 @@
 // Curtis's Cabinet of Curiosities
-// - Dark/Light theme toggle
+// - Theme launchers and menus per theme
 // - Render curiosities from assets/curiosities.json or window.CURIOSITIES
 // - Tag filter chips
 
@@ -8,7 +8,6 @@
 
   const storageKey = "theme-preference";
   const root = document.documentElement;
-  const toggleBtn = document.getElementById("themeToggle");
   const grid = document.getElementById("grid");
   const empty = document.getElementById("empty");
   const filters = document.getElementById("filters");
@@ -18,7 +17,7 @@
 
   function getPreferredTheme() {
     const saved = localStorage.getItem(storageKey);
-    if (saved === "light" || saved === "dark") return saved;
+    if (saved === "win98" || saved === "geocities" || saved === "dark") return saved;
     return "dark";
   }
 
@@ -27,14 +26,8 @@
   }
 
   function initTheme() {
+    // Apply saved or default theme
     applyTheme(getPreferredTheme());
-    if (toggleBtn) {
-      toggleBtn.addEventListener("click", () => {
-        const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-        applyTheme(next);
-        localStorage.setItem(storageKey, next);
-      });
-    }
   }
 
   async function loadCuriosities() {
@@ -83,7 +76,7 @@
       imgSrc = override;
     } else {
       // Build screenshot URL from INSTANT_SITE_DOMAIN (e.g., "cosine" -> "screenshot.cosine.show")
-      const domain = (typeof window.INSTANT_SITE_DOMAIN !== "undefined" ? String(window.INSTANT_SITE_DOMAIN) : "").trim().replace(/\/+$/, "");
+      const domain = (typeof window.INSTANT_SITE_DOMAIN !== "undefined" ? String(window.INSTANT_SITE_DOMAIN) : "").trim().replace(/\/*$/, "");
       if (domain) {
         let host = `screenshot.${domain}`;
         if (!host.endsWith(".show")) host += ".show";
@@ -277,6 +270,80 @@
       try { filters.scrollIntoView({ behavior: "smooth", block: "center" }); } catch (_) {}
     }
   });
+
+  // Theme launcher menus
+  const themeMenuBtn = document.getElementById("themeMenuBtn");
+  const themeMenu = document.getElementById("themeMenu");
+  const winStartBtn = document.getElementById("winStartBtn");
+  const winStartMenu = document.getElementById("winStartMenu");
+  const geoThemeBtn = document.getElementById("geoThemeBtn");
+  const geoThemeMenu = document.getElementById("geoThemeMenu");
+
+  function hideAllMenus() {
+    [themeMenu, winStartMenu, geoThemeMenu].forEach((m) => {
+      if (m) m.hidden = true;
+    });
+  }
+
+  function attachThemeClicks(menuEl) {
+    if (!menuEl) return;
+    menuEl.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-theme]");
+      if (!btn) return;
+      const t = btn.getAttribute("data-theme");
+      if (!t) return;
+      applyTheme(t);
+      try { localStorage.setItem(storageKey, t); } catch (_) {}
+      hideAllMenus();
+    });
+  }
+
+  function bindMenu(toggleBtn, menuEl, position = "default") {
+    if (!toggleBtn || !menuEl) return;
+    toggleBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const wasHidden = menuEl.hidden;
+      hideAllMenus();
+      if (wasHidden) {
+        // Optionally position menu relative to button for some launchers
+        if (position === "relative") {
+          const rect = toggleBtn.getBoundingClientRect();
+          menuEl.style.left = `${rect.left}px`;
+          menuEl.style.top = `${rect.bottom + 6}px`;
+        }
+        menuEl.hidden = false;
+      }
+    });
+  }
+
+  // Global close handlers
+  document.addEventListener("click", () => hideAllMenus());
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") hideAllMenus();
+  });
+
+  // Wire menus
+  attachThemeClicks(themeMenu);
+  attachThemeClicks(winStartMenu);
+  attachThemeClicks(geoThemeMenu);
+
+  bindMenu(themeMenuBtn, themeMenu, "relative");
+  bindMenu(winStartBtn, winStartMenu); // fixed CSS positions the menu above (upwards)
+  bindMenu(geoThemeBtn, geoThemeMenu, "relative");
+
+  // Simple Win98 taskbar clock
+  function updateWinClock() {
+    const el = document.getElementById("winClock");
+    if (!el) return;
+    const d = new Date();
+    let h = d.getHours();
+    const m = d.getMinutes().toString().padStart(2, "0");
+    const ampm = h >= 12 ? "PM" : "AM";
+    h = h % 12; if (h === 0) h = 12;
+    el.textContent = `${h}:${m} ${ampm}`;
+  }
+  setInterval(updateWinClock, 1000);
+  updateWinClock();
 
   // Initialize
   initTheme();

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="light dark" />
+  <meta name="color-scheme" content="dark" />
   <title>Cosine's Curious Compendium</title>
   <link href="https://fonts.googleapis.com/css2?family=Lavishly+Yours&family=Honk&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/style.css" />
@@ -13,17 +13,21 @@
   <header class="site-header">
     <div class="wrap">
       <h1 class="brand">Cosine's Curious Compendium</h1>
-      <button id="themeToggle" class="theme-toggle" aria-label="Toggle color theme" title="Toggle color theme">
-        <svg data-icon="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-          <circle cx="12" cy="12" r="4"></circle>
-          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
-        </svg>
-        <svg data-icon="moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M21 12.79A9 9 0 0111.21 3c-.46 0-.92.03-1.36.1a8 8 0 108.05 10.45c.08-.44.1-.9.1-1.36z"></path>
-        </svg>
-      </button>
+      <!-- No inline theme buttons; launchers are placed elsewhere per theme -->
     </div>
   </header>
+
+  <!-- Geocities banner (only visible in Geocities theme) -->
+  <div class="geo-banner" aria-hidden="true">
+    <div class="geo-banner-inner">
+      <span class="geo-badge">Under Construction</span>
+      <span class="geo-badge">Best viewed in Netscape</span>
+      <span class="geo-badge">Sign my Guestbook!</span>
+      <div class="geo-marquee">
+        <span>Welcome to my homepage!!! Thanks for visiting!  Hit refresh for more sparkles!  </span>
+      </div>
+    </div>
+  </div>
 
   <main class="site-main">
     <div class="wrap">
@@ -45,6 +49,38 @@
       <small>&copy; 2025 Curtis</small>
     </div>
   </footer>
+
+  <!-- Win98 Taskbar (visible only in Win98 theme) -->
+  <div class="win98-taskbar win98-only" role="toolbar" aria-label="Windows 98 taskbar">
+    <button id="winStartBtn" class="win-start-btn" aria-haspopup="true" aria-controls="winStartMenu" title="Start">Start</button>
+    <div class="taskbar-spacer" aria-hidden="true"></div>
+    <span id="winClock" class="win-clock" aria-live="polite" aria-atomic="true"></span>
+  </div>
+
+  <!-- Dark theme hamburger (visible only in Dark theme) -->
+  <button id="themeMenuBtn" class="theme-menu-btn dark-only" aria-haspopup="true" aria-controls="themeMenu" title="Themes" aria-label="Open theme menu">
+    <span class="hamburger" aria-hidden="true"></span>
+  </button>
+  <div id="themeMenu" class="theme-menu dark-menu" hidden>
+    <button type="button" data-theme="dark">Synthwave</button>
+    <button type="button" data-theme="win98">Windows 98</button>
+    <button type="button" data-theme="geocities">Geocities</button>
+  </div>
+
+  <!-- Win98 Start menu -->
+  <div id="winStartMenu" class="theme-menu win98-menu" hidden>
+    <button type="button" data-theme="dark">Synthwave</button>
+    <button type="button" data-theme="win98">Windows 98</button>
+    <button type="button" data-theme="geocities">Geocities</button>
+  </div>
+
+  <!-- Geocities launcher -->
+  <button id="geoThemeBtn" class="geo-theme-btn geocities-only" aria-haspopup="true" aria-controls="geoThemeMenu" title="THEMEZ">THEMEZ</button>
+  <div id="geoThemeMenu" class="theme-menu geocities-menu" hidden>
+    <button type="button" data-theme="dark">Synthwave</button>
+    <button type="button" data-theme="win98">Windows 98</button>
+    <button type="button" data-theme="geocities">Geocities</button>
+  </div>
 
   <script>window.INSTANT_SITE_DOMAIN = "cosine";</script>
   <script src="assets/script.js"></script>
