@@ -387,8 +387,7 @@ html[data-theme="win98"] .cta .cta-link:active {
 
 /* Footer like a taskbar panel */
 html[data-theme="win98"] .site-footer {
-  border-top: 2px solid #000;
-  background: #c0c0c0;
+  display: none;
 }
 
 html[data-theme="win98"] .site-footer .wrap {
