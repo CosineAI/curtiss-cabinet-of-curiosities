@@ -48,6 +48,22 @@
     "tags": ["toys"]
   },
   {
+    "title": "Piano Smasher Rhythm Game",
+    "url": "https://piano-smasher.cosine.show/",
+    "description": "Upload an mp3 and play it!",
+    "screenshotUrl": "https://screenshot.cosine.show/?url=https://piano-smasher.cosine.show",
+    "author": "curtisahuang",
+    "tags": ["games", "music"]
+  },
+  {
+    "title": "winamp music visualiser",
+    "url": "https://music-visualiser-winamp.cosine.page/",
+    "description": "Share a tab's audio with this page to see some retro visualisations!",
+    "screenshotUrl": "https://screenshot.cosine.show/?url=https://music-visualiser-winamp.cosine.page/",
+    "author": "curtisahuang",
+    "tags": ["music"]
+  },
+  {
     "title": "14 Days Until Christmas Game",
     "url": "https://14-days-until-christmas-game.cosine.show/",
     "description": "A dating simulator with music and choices that determine whether you can get a date by Christmas!",
